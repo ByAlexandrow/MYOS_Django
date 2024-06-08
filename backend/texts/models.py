@@ -12,11 +12,25 @@ from Mystery_Of_Story.constants import (
 User = get_user_model()
 
 
-class TextsGenresTags(models.Model):
-    texts_tag = models.CharField(
-        'Тэг',
+class TextsGenres(models.Model):
+    texts_genre = models.CharField(
+        'Жанр',
         unique=True,
-        max_length=CHAR_FIELD_MAX_LENGTH
+        max_length=CHAR_FIELD_MAX_LENGTH,
+    )
+
+    class Meta:
+        verbose_name = 'Жанр'
+        verbose_name_plural = 'Жанры'
+
+    def __str__(self):
+        return self.texts_genre
+
+
+class TextsCategoriesTags(models.Model):
+    categories_title = models.CharField(
+        max_length=20,
+        verbose_name='Категория',
     )
     color = ColorField(
         'Цвет в НЕХ',
@@ -26,21 +40,8 @@ class TextsGenresTags(models.Model):
     slug = models.SlugField(
         'Уникальный слаг',
         unique=True,
-        max_length=CHAR_FIELD_MAX_LENGTH
-    )
-
-    class Meta:
-        verbose_name = 'Тэг Жанра'
-        verbose_name_plural = 'Тэги Жанров'
-
-    def __str__(self):
-        return self.texts_tag
-
-
-class TextsCategories(models.Model):
-    categories_title = models.CharField(
-        max_length=20,
-        verbose_name='Категория',
+        max_length=CHAR_FIELD_MAX_LENGTH,
+        default='',
     )
     publication = models.BooleanField(
         verbose_name='Опубликовать',
@@ -52,6 +53,27 @@ class TextsCategories(models.Model):
     
     def __str__(self):
         return self.categories_title
+
+
+class Reactions(models.Model):
+    LIKE = 'LIKE'
+    DISLIKE = 'DISLIKE'
+    REACTION_CHOICES = [
+        (LIKE, 'Like'),
+        (DISLIKE, 'Dislike')
+    ]
+
+    reaction = models.CharField(
+        max_length=7,
+        choices=REACTION_CHOICES,
+    )
+
+    class Meta:
+        verbose_name = 'Реакция'
+        verbose_name_plural = 'Реакции'
+    
+    def __str__(self):
+        return self.reaction
 
 
 class Texts(models.Model):
@@ -72,13 +94,13 @@ class Texts(models.Model):
         verbose_name='Текст',
     )
     genre = models.ForeignKey(
-        TextsGenresTags,
+        TextsGenres,
         on_delete=models.CASCADE,
         null=True,
         verbose_name='Жанр'
     )
     categories = models.ForeignKey(
-        TextsCategories,
+        TextsCategoriesTags,
         on_delete=models.CASCADE,
         null=True,
         verbose_name='Категория'
@@ -92,6 +114,12 @@ class Texts(models.Model):
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата создания',
+    )
+    reactions = models.ForeignKey(
+        Reactions,
+        on_delete=models.CASCADE,
+        null=True,
+        verbose_name='Реакции',
     )
     is_published = models.BooleanField(
         default=False,
@@ -117,29 +145,22 @@ class Texts(models.Model):
         verbose_name_plural = 'Тексты'
 
 
-class Reactions(models.Model):
-    LIKE = 'LIKE'
-    REACTION_CHOICES = [
-        (LIKE, 'Like')
-    ]
-
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-    )
-    content_object = models.ForeignKey(
+class Comment(models.Model):
+    comments_text = models.TextField('Текст комментария')
+    comments = models.ForeignKey(
         Texts,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True,
     )
-    reaction = models.CharField(
-        max_length=7,
-        choices=REACTION_CHOICES,
-    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = ('user', 'content_object')
-        verbose_name = 'Реакция'
-        verbose_name_plural = 'Реакции'
+        ordering = ('created_at',)
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
 
 
 class Follow(models.Model):
@@ -186,25 +207,23 @@ class AbstractModel(models.Model):
         abstract = True
 
     def clean(self):
-        if self.__class__objects.filter(
+        if self.__class__.objects.filter(
             user=self.user, text=self.text
         ).exists():
-            raise ValidationError(
-                'Такой текст уже существует!'
-            )
+            raise ValidationError('Такая запись уже существует!')
 
 
 class Favorites(AbstractModel):
     class Meta:
         verbose_name = 'Избранное'
         verbose_name_plural = 'Избранные'
-        default_related_name = 'favourites'
+        default_related_name = 'favorites'
         constraints = [
             models.UniqueConstraint(
                 fields=['user', 'text'],
                 name='Уникальность избранного'
             )
         ]
-    
+
     def __str__(self):
-        return f'{self.user} добавил текст {self.text} в избранное!'
+        return f'{self.user} добавил рецепт {self.text} в избранное!'
