@@ -217,7 +217,7 @@ class Favorites(AbstractModel):
     class Meta:
         verbose_name = 'Избранное'
         verbose_name_plural = 'Избранные'
-        default_related_name = 'favorites'
+        default_related_name = 'texts_favorites'
         constraints = [
             models.UniqueConstraint(
                 fields=['user', 'text'],
@@ -226,4 +226,4 @@ class Favorites(AbstractModel):
         ]
 
     def __str__(self):
-        return f'{self.user} добавил рецепт {self.text} в избранное!'
+        return f'{self.user} добавил текст {self.text} в избранное!'

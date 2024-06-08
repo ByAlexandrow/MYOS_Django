@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'texts.apps.TextsConfig',
     'articles.apps.ArticlesConfig',
     'victoria.apps.VictoriaConfig',
-    'categories.apps.CategoriesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
