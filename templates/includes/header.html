@@ -7,7 +7,7 @@
         Блогикум
       </a>
       {% with request.resolver_match.view_name as view_name %}
-        <ul class="nav  nav-pills">
+        <ul class="nav nav-pills">
           <li class="nav-item">
             <a class="nav-link {% if view_name == 'pages:about' %} text-white {% endif %}" href="{% url 'pages:about' %}">
               О проекте
