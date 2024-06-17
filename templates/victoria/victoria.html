@@ -1,7 +1,71 @@
 {% extends "our_love.html" %}
 {% block title %}Афродита моего сердца{% endblock %}
 {% block content %}
+<style>
+.card {
+    background-color: rgb(63, 63, 216);
+    border-color: white;
+    border-radius: 30px;
+}
+.card-header {
+    color: white;
+    border-color: white;
+}
+.card-body {
+    color: white;
+}
+.card-footer {
+    color: white;
+    border-color: white;
+}
+</style>
+<div class="card text-center">
     {% for moment in moments %}
-        <p>{{ moment.our_story|safe }}</p>
+        <div id="card-{{ forloop.counter }}" class="card-item">
+            <div class="card-header">
+                {{ moment.title }}
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ moment.our_story|safe }}</p>
+                {% if forloop.first %}
+                    <a href="#" class="btn btn-primary next-card">В историю</a>
+                {% elif forloop.last %}
+                    <a href="#" class="btn btn-primary prev-card">Настоящее</a>
+                {% else %}
+                    <a href="#" class="btn btn-primary prev-card">Настоящее</a>
+                    <a href="#" class="btn btn-primary next-card">В историю</a>
+                {% endif %}
+            </div>
+            <div class="card-footer">
+                {{ moment.period }}
+            </div>
+        </div>
     {% endfor %}
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.card-item');
+        cards.forEach(card => card.style.display = 'none');
+        let currentIndex = 0;
+        cards[currentIndex].style.display = 'block';
+
+        document.querySelectorAll('.next-card').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                cards[currentIndex].style.display = 'none';
+                currentIndex = (currentIndex + 1) % cards.length;
+                cards[currentIndex].style.display = 'block';
+            });
+        });
+
+        document.querySelectorAll('.prev-card').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                cards[currentIndex].style.display = 'none';
+                currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+                cards[currentIndex].style.display = 'block';
+            });
+        });
+    });
+</script>
 {% endblock %}
