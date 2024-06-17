@@ -1,6 +1,8 @@
 from django.shortcuts import render
 
+from victoria.models import Victoria
+
 
 def victoria(request):
-    template = 'victoria/victoria.html'
-    return render(request, template)
+    moments = Victoria.objects.all().order_by('created_at')
+    return render(request, 'victoria/victoria.html', {'moments': moments})

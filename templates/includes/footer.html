@@ -1,3 +1,33 @@
-<footer class="border-top text-center py-3">
-    <p>© Mystery Of Story</p>    
+<footer class="footer border-top text-center py-3">
+    <nav class="navbar navbar-expand">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'articles:index' %}">
+          <img src="..." alt="Mystery Of Story" class="logo">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'pages:about' %}active{% endif %}" href="{% url 'pages:about' %}">
+                О проекте
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'articles:all_articles' %}active{% endif %}" href="{% url 'articles:all_articles' %}">
+                Категории
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'articles:new_articles' %}active{% endif %}" href="{% url 'articles:new_articles' %}">
+                Новое
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="donation">
+          <a href="...">
+            <img src="..." alt="Поддержать" class="donation">
+          </a>
+        </div>
+      </div>
+    </nav>
 </footer>

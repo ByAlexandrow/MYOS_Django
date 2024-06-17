@@ -1,42 +1,34 @@
 {% load static %}
-<header>
-  <nav class="navbar navbar-light" style="background-color: white">
+<header class="header">
+  <nav class="navbar navbar-expand">
     <div class="container">
       <a class="navbar-brand" href="{% url 'articles:index' %}">
-        <img src="..." width="30" height="30" class="d-inline-block align-top" alt="">
-        Mystery Of Story
+        <img src="{% static 'logo.svg' %}" alt="Mystery Of Story" class="logo">
       </a>
-      {% with request.resolver_match.view_name as view_name %}
-        <ul class="nav nav-pills">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
           <li class="nav-item">
-            <a class="nav-link {% if view_name == 'pages:about' %} text-white {% endif %}" href="{% url 'pages:about' %}">
+            <a class="nav-link {% if view_name == 'pages:about' %}active{% endif %}" href="{% url 'pages:about' %}">
               О проекте
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if view_name == 'pages:rules' %} text-white {% endif %}" href="{% url 'pages:rules' %}">
-              Правила
+            <a class="nav-link {% if view_name == 'articles:all_articles' %}active{% endif %}" href="{% url 'articles:all_articles' %}">
+              Категории
             </a>
           </li>
-          {% if user.is_authenticated %}
-            <div class="btn-group" role="group" aria-label="Basic outlined example">
-              <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
-                  href="...">Написать пост</a></button>
-              <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
-                  href="...">{{ user.username }}</a></button>
-              <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
-                  href="...">Выйти</a></button>
-            </div>
-          {% else %}
-            <div class="btn-group" role="group" aria-label="Basic outlined example">
-              <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
-                  href="...">Войти</a></button>
-              <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
-                  href="...">Регистрация</a></button>
-            </div>
-          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link {% if view_name == 'articles:new_articles' %}active{% endif %}" href="{% url 'articles:new_articles' %}">
+              Новое
+            </a>
+          </li>
         </ul>
-      {% endwith %}
+      </div>
+      <div class="donation">
+        <a href="...">
+          <img src="..." alt="Поддержать" class="donation">
+        </a>
+      </div>
     </div>
   </nav>
 </header>

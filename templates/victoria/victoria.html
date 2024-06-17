@@ -1,5 +1,7 @@
 {% extends "our_love.html" %}
-{% block title %}Чудо{% endblock %}
+{% block title %}Афродита моего сердца{% endblock %}
 {% block content %}
-<h2>Hi, babe!</h2>
+    {% for moment in moments %}
+        <p>{{ moment.our_story|safe }}</p>
+    {% endfor %}
 {% endblock %}
