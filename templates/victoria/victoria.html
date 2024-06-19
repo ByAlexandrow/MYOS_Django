@@ -2,68 +2,110 @@
 {% block title %}Афродита моего сердца{% endblock %}
 {% block content %}
 <style>
-.card {
-    background-color: rgb(63, 63, 216);
-    border-color: white;
-    border-radius: 30px;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
-.card-header {
-    color: white;
-    border-color: white;
+.book {
+    width: 1200px;
+    height: 750px;
+    position: relative;
+    perspective: 1000px;
+    border: 4px solid white;
 }
-.card-body {
-    color: white;
+.page {
+    width: 50%;
+    height: 100%;
+    padding: 10px;
+    position: absolute;
+    transform-origin: right;
+    transition: transform 0.5s;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    border: 4px solid white;
 }
-.card-footer {
-    color: white;
-    border-color: white;
+.left-page {
+    left: 0;
+}
+.right-page {
+    right: 0;
+}
+.page-navigation {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.active-page {
+    z-index: 10;
 }
 </style>
-<div class="card text-center">
+<div class="book">
     {% for moment in moments %}
-        <div id="card-{{ forloop.counter }}" class="card-item">
-            <div class="card-header">
-                {{ moment.title }}
-            </div>
-            <div class="card-body">
-                <p class="card-text">{{ moment.our_story|safe }}</p>
+        <div class="page {% if forloop.counter|divisibleby:2 %}right-page{% else %}left-page{% endif %}" id="page-{{ forloop.counter }}">
+            <p>{{ moment.title }}</p>
+            <p>{{ moment.our_story|safe }}</p>
+            <p>{{ moment.period }}</p>
+            <div class="page-navigation">
                 {% if forloop.first %}
-                    <a href="#" class="btn btn-primary next-card">В историю</a>
+                    <a href="#" class="btn btn-primary next-page">Дальше</a>
                 {% elif forloop.last %}
-                    <a href="#" class="btn btn-primary prev-card">Настоящее</a>
+                    <a href="#" class="btn btn-primary prev-page">Назад</a>
                 {% else %}
-                    <a href="#" class="btn btn-primary prev-card">Настоящее</a>
-                    <a href="#" class="btn btn-primary next-card">В историю</a>
+                    <a href="#" class="btn btn-primary prev-page">Назад</a>
+                    <a href="#" class="btn btn-primary next-page">Дальше</a>
                 {% endif %}
-            </div>
-            <div class="card-footer">
-                {{ moment.period }}
             </div>
         </div>
     {% endfor %}
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const cards = document.querySelectorAll('.card-item');
-        cards.forEach(card => card.style.display = 'none');
-        let currentIndex = 0;
-        cards[currentIndex].style.display = 'block';
-
-        document.querySelectorAll('.next-card').forEach(button => {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                cards[currentIndex].style.display = 'none';
-                currentIndex = (currentIndex + 1) % cards.length;
-                cards[currentIndex].style.display = 'block';
-            });
+    function setActivePage(pageId) {
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(page => {
+            if (page.id === pageId) {
+                page.classList.add('active-page');
+                page.classList.remove('inactive-page');
+            } else {
+                page.classList.add('inactive-page');
+                page.classList.remove('active-page');
+            }
         });
+    }
 
-        document.querySelectorAll('.prev-card').forEach(button => {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                cards[currentIndex].style.display = 'none';
-                currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-                cards[currentIndex].style.display = 'block';
+    function flipPage(pageId, direction) {
+        const page = document.getElementById(pageId);
+        const pages = document.querySelectorAll('.page');
+        const currentIndex = Array.from(pages).indexOf(page);
+    
+        if (direction === 'next') {
+            if (currentIndex < pages.length - 1) {
+                setActivePage(pages[currentIndex + 1].id);
+            }
+        } else if (direction === 'prev') {
+            if (currentIndex > 0) {
+                setActivePage(pages[currentIndex - 1].id);
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const pages = document.querySelectorAll('.page');
+        if (pages.length > 0) {
+            setActivePage(pages[0].id);
+        }
+        pages.forEach(page => {
+            page.addEventListener('click', (event) => {
+                const target = event.target;
+                if (target.classList.contains('next-page')) {
+                    flipPage(page.id, 'next');
+                } else if (target.classList.contains('prev-page')) {
+                    flipPage(page.id, 'prev');
+                }
             });
         });
     });

@@ -71,10 +71,9 @@ class Articles(models.Model):
         default='Здесь надо добавить текст статьи!',
         verbose_name='Текст статьи',
     )
-    reactions = models.ForeignKey(
+    reactions = models.ManyToManyField(
         ArticlesReactions,
-        on_delete=models.CASCADE,
-        null=True,
+        blank=True,
         verbose_name='Реакции',
     )
     category = models.ForeignKey(
