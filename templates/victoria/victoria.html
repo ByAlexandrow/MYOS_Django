@@ -1,113 +1,155 @@
 {% extends "our_love.html" %}
+{% load static %}
 {% block title %}Афродита моего сердца{% endblock %}
 {% block content %}
 <style>
 body {
+    background-color: #f0f0f0;
+    font-family: 'Comic Sans MS', 'Comic Neue', cursive;
+    color: #000080;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    text-decoration: underline wavy #000080;
+}
+p {
+    line-height: 1.6;
+    text-indent: 20px;
 }
 .book {
-    width: 1200px;
-    height: 750px;
+    width: 1100px;
+    height: 710px;
+    background-color: #f9f5e3;
+    border: 2px solid #000080;
+    margin-top: 0.5px;
     position: relative;
-    perspective: 1000px;
-    border: 4px solid white;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.book::before, .book::after,
+.book .page-left, .book .page-right,
+.book .page-left-two, .book .page-right-two,
+.book .page-left-three, .book .page-right-three {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f9f5e3;
+    border: 2px solid #000080;
+}
+.book::before {
+    left: -10px;
+    margin-top: 2px;
+    z-index: -1;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.8);
+}
+.book::after {
+    right: -10px;
+    margin-top: 2px;
+    z-index: -1;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.8);
+}
+.book .page-left {
+    left: -19px;
+    margin-top: 3.5px;
+    z-index: -2;
+}
+.book .page-right {
+    right: -19px;
+    margin-top: 3.5px;
+    z-index: -2;
+}
+.book .page-left-two {
+    left: -27px;
+    margin-top: 5.5px;
+    z-index: -3;
+}
+.book .page-right-two {
+    right: -27px;
+    margin-top: 5.5px;
+    z-index: -3;
+}
+.book .page-left-three {
+    left: -35px;
+    margin-top: 7px;
+    z-index: -4;
+}
+.book .page-right-three {
+    right: -35px;
+    margin-top: 7px;
+    z-index: -4;
+    box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.7);
 }
 .page {
-    width: 50%;
+    width: 48%;
     height: 100%;
+    background-color: #ffffff;
+    border: 2px solid #000080;
     padding: 10px;
+    overflow: hidden;
+}
+.page p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+.polaroid {
+    background: #ffffff;
+    display: inline-block;
+    margin: 20px;
+    padding: 10px;
+    box-shadow: 5px 5px 0px #000080;
+    border: 2px dashed #000080;
+    width: 400px;
+    height: 500px;
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 1.6;
     position: absolute;
-    transform-origin: right;
-    transition: transform 0.5s;
-    background-color: rgba(0, 0, 0, 0);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
-    border: 4px solid white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-.left-page {
-    left: 0;
+.polaroid img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border: 2px solid #000080;
 }
-.right-page {
-    right: 0;
+.polaroid p {
+    margin-top: 10px;
 }
-.page-navigation {
+.book::before, .book::after {
+    content: '';
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
-.active-page {
-    z-index: 10;
+    top: -2px;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background-color: #000080;
+    transform: translateX(-50%);
+    z-index: 1;
 }
 </style>
 <div class="book">
-    {% for moment in moments %}
-        <div class="page {% if forloop.counter|divisibleby:2 %}right-page{% else %}left-page{% endif %}" id="page-{{ forloop.counter }}">
-            <p>{{ moment.title }}</p>
-            <p>{{ moment.our_story|safe }}</p>
-            <p>{{ moment.period }}</p>
-            <div class="page-navigation">
-                {% if forloop.first %}
-                    <a href="#" class="btn btn-primary next-page">Дальше</a>
-                {% elif forloop.last %}
-                    <a href="#" class="btn btn-primary prev-page">Назад</a>
-                {% else %}
-                    <a href="#" class="btn btn-primary prev-page">Назад</a>
-                    <a href="#" class="btn btn-primary next-page">Дальше</a>
-                {% endif %}
-            </div>
-        </div>
-    {% endfor %}
+    <div class="page">
+        <p>Once upon a time, in a land far, far away, there was a magical forest...</p>
+    </div>
+    <div class="page">
+        <p>The end of the story was not yet written, for the adventure had just begun...</p>
+    </div>
+    <div class="page-left"></div>
+    <div class="page-right"></div>
+    <div class="page-left-two"></div>
+    <div class="page-right-two"></div>
+    <div class="page-left-three"></div>
+    <div class="page-right-three"></div>
 </div>
-<script>
-    function setActivePage(pageId) {
-        const pages = document.querySelectorAll('.page');
-        pages.forEach(page => {
-            if (page.id === pageId) {
-                page.classList.add('active-page');
-                page.classList.remove('inactive-page');
-            } else {
-                page.classList.add('inactive-page');
-                page.classList.remove('active-page');
-            }
-        });
-    }
-
-    function flipPage(pageId, direction) {
-        const page = document.getElementById(pageId);
-        const pages = document.querySelectorAll('.page');
-        const currentIndex = Array.from(pages).indexOf(page);
-    
-        if (direction === 'next') {
-            if (currentIndex < pages.length - 1) {
-                setActivePage(pages[currentIndex + 1].id);
-            }
-        } else if (direction === 'prev') {
-            if (currentIndex > 0) {
-                setActivePage(pages[currentIndex - 1].id);
-            }
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const pages = document.querySelectorAll('.page');
-        if (pages.length > 0) {
-            setActivePage(pages[0].id);
-        }
-        pages.forEach(page => {
-            page.addEventListener('click', (event) => {
-                const target = event.target;
-                if (target.classList.contains('next-page')) {
-                    flipPage(page.id, 'next');
-                } else if (target.classList.contains('prev-page')) {
-                    flipPage(page.id, 'prev');
-                }
-            });
-        });
-    });
-</script>
 {% endblock %}
