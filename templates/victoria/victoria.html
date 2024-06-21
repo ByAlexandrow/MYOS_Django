@@ -4,7 +4,7 @@
 {% block content %}
 <style>
 body {
-    background-color: #f0f0f0;
+    background: #f0f0f0;
     font-family: 'Comic Sans MS', 'Comic Neue', cursive;
     color: #000080;
     padding: 20px;
@@ -95,7 +95,7 @@ p {
     border: 2px solid #000080;
     padding: 10px;
     overflow: hidden;
-    position: relative; /* Добавлено для позиционирования полароида */
+    position: relative;
 }
 .page p {
     font-size: 1.2em;
@@ -104,19 +104,19 @@ p {
 .polaroid {
     background: #ffffff;
     display: inline-block;
-    margin: 20px auto; /* Изменено для вертикального отступа и центрирования */
+    margin: 20px auto;
     padding: 10px;
     box-shadow: 5px 5px 0px #000080;
     border: 2px dashed #000080;
     width: 400px;
-    height: 500px;
+    height: 550px;
     text-align: center;
     font-size: 1.2em;
     line-height: 1.6;
     position: absolute;
-    top: 20px; /* Изменено для размещения вверху */
+    top: 20px;
     left: 50%;
-    transform: translateX(-50%); /* Изменено для горизонтального центрирования */
+    transform: translateX(-50%);
 }
 .polaroid img {
     width: 100%;
@@ -156,8 +156,9 @@ p {
             <div class="page left-page">
                 <p>Here will be title of the moment</p>
                 <div class="polaroid">
-                    <img src="..." alt="Описание изображения">
+                    <img src="{{ moment.best_img.url }}" alt="Лучший момент">
                     <p>{{ moment.title }}</p>
+                    <p>{{ moment.our_story|safe }}</p>
                 </div>
                 <nav aria-label="page-navigation" class="bottom-left">
                     <ul class="pagination">
@@ -175,8 +176,9 @@ p {
             <div class="page right-page">
                 <p>Here will be title of the other moment</p>
                 <div class="polaroid">
-                    <img src="..." alt="Описание изображения">
+                    <img src="{{ moment.best_img.url }}" alt="Лучший момент">
                     <p>{{ moment.title }}</p>
+                    <p>{{ moment.our_story|safe }}</p>
                 </div>
                 <nav aria-label="page-navigation" class="bottom-right">
                     <ul class="pagination">

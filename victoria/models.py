@@ -4,6 +4,10 @@ from tinymce.models import HTMLField
 
 
 class Victoria(models.Model):
+    best_img = models.ImageField(
+        upload_to='images/moments/',
+        verbose_name='Фото дня'
+    )
     title = models.CharField(
         max_length=100,
         verbose_name='Название момента'
@@ -13,15 +17,19 @@ class Victoria(models.Model):
     )
     period = models.CharField(
         max_length=50,
-        default='',
+        blank=True,
+        null=True,
         verbose_name='Период',
     )
     created_at = models.DateField(
-        auto_now=True,
+        auto_now_add=True,
         verbose_name='Дата создания',
     )
 
     class Meta:
         ordering = ('-created_at',)
         verbose_name = 'Виктория'
-        verbose_name_plural = 'Виктория'
+        verbose_name_plural = 'Виктории'
+
+    def __str__(self):
+        return self.title
