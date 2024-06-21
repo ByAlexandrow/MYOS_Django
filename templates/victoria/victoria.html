@@ -95,6 +95,7 @@ p {
     border: 2px solid #000080;
     padding: 10px;
     overflow: hidden;
+    position: relative; /* Добавлено для позиционирования полароида */
 }
 .page p {
     font-size: 1.2em;
@@ -103,7 +104,7 @@ p {
 .polaroid {
     background: #ffffff;
     display: inline-block;
-    margin: 20px;
+    margin: 20px auto; /* Изменено для вертикального отступа и центрирования */
     padding: 10px;
     box-shadow: 5px 5px 0px #000080;
     border: 2px dashed #000080;
@@ -113,9 +114,9 @@ p {
     font-size: 1.2em;
     line-height: 1.6;
     position: absolute;
-    top: 50%;
+    top: 20px; /* Изменено для размещения вверху */
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%); /* Изменено для горизонтального центрирования */
 }
 .polaroid img {
     width: 100%;
@@ -137,14 +138,60 @@ p {
     transform: translateX(-50%);
     z-index: 1;
 }
+.bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
 </style>
 <div class="book">
-    <div class="page">
-        <p>Once upon a time, in a land far, far away, there was a magical forest...</p>
-    </div>
-    <div class="page">
-        <p>The end of the story was not yet written, for the adventure had just begun...</p>
-    </div>
+    {% for moment in moments %}
+        {% if forloop.counter0|divisibleby:2 %}
+            <div class="page left-page">
+                <p>Here will be title of the moment</p>
+                <div class="polaroid">
+                    <img src="..." alt="Описание изображения">
+                    <p>{{ moment.title }}</p>
+                </div>
+                <nav aria-label="page-navigation" class="bottom-left">
+                    <ul class="pagination">
+                        {% if moments.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ moments.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        {% else %}
+            <div class="page right-page">
+                <p>Here will be title of the other moment</p>
+                <div class="polaroid">
+                    <img src="..." alt="Описание изображения">
+                    <p>{{ moment.title }}</p>
+                </div>
+                <nav aria-label="page-navigation" class="bottom-right">
+                    <ul class="pagination">
+                        {% if moments.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ moments.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        {% endif %}
+    {% endfor %}
     <div class="page-left"></div>
     <div class="page-right"></div>
     <div class="page-left-two"></div>
