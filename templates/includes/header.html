@@ -1,34 +1,106 @@
 {% load static %}
+<style>
+header {
+    background-color: #3030A6;
+    position: sticky;
+    top: 0;
+    padding: 0px 5px;
+    z-index: 1000;
+}
+.head-nav {
+    padding-right: 325px;
+}
+.nav-link {
+    color: white;
+    font-family: "Unbounded";
+    font-weight: 500;
+    font-style: normal;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.nav-link:hover {
+    color: white;
+}
+.btn {
+    color: white;
+    font-family: "Unbounded";
+    font-weight: 500;
+    font-style: normal;
+}
+.btn:hover {
+    color: white;
+}
+.dropdown-toggle::after {
+    content: none;
+}
+.dropdown-toggle {
+    background-image: url("{% static 'img/vector.svg' %}");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 15px;
+    padding-right: 17px;
+}
+.navbar-brand {
+    font-family: "Bruno Ace", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+}
+.navbar-brand:hover {
+    color: white;
+}
+.logo {
+    margin-right: 10px;
+}
+.donation {
+    color: white;
+    font-family: "Unbounded";
+    font-weight: 500;
+    font-style: normal;
+    background-color: #3030A6;
+    border-radius: 22px;
+    border-color: #4C956C;
+    width: 248px;
+    height: 37px;
+}
+.donation:hover {
+    border-color: #4C956C;
+    color: white;
+    text-decoration: solid;
+}
+</style>
 <header class="header">
-  <nav class="navbar navbar-expand">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'articles:index' %}">
-        <img src="{% static 'logo.svg' %}" alt="Mystery Of Story" class="logo">
-      </a>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item">
-            <a class="nav-link {% if view_name == 'pages:about' %}active{% endif %}" href="{% url 'pages:about' %}">
-              О проекте
+    <nav class="navbar navbar-expand">
+        <div class="container header-container">
+            <a class="navbar-brand" href="{% url 'articles:index' %}">
+                <img src="{% static 'img/logo.svg' %}" alt="Mystery Of Story" class="logo">Mystery Of Story
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if view_name == 'articles:all_articles' %}active{% endif %}" href="{% url 'articles:all_articles' %}">
-              Категории
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if view_name == 'articles:new_articles' %}active{% endif %}" href="{% url 'articles:new_articles' %}">
-              Новое
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="donation">
-        <a href="...">
-          <img src="..." alt="Поддержать" class="donation">
-        </a>
-      </div>
-    </div>
-  </nav>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="head-nav navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if view_name == 'pages:about' %}active{% endif %}" href="{% url 'pages:about' %}">
+                            О проекте
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                Категории
+                            </button>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if view_name == 'articles:new_articles' %}active{% endif %}" href="{% url 'articles:new_articles' %}">
+                            Новое
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="donation">
+                <a href="...">
+                    <button type="button" class="btn donation">Поддержать</button>
+                </a>
+            </div>
+        </div>
+    </nav>
 </header>

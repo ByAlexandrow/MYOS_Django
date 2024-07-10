@@ -1,33 +1,63 @@
+{% load static %}
+<style>
+footer {
+    background-color: #3030A6;
+}
+.nav-link {
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.logo {
+    margin-right: 10px;
+}
+.footer-donation {
+    color: white;
+    font-family: "Unbounded", Medium 500;
+    font-weight: 500;
+    font-style: normal;
+    background-color: #3030A6;
+    border-radius: 22px;
+    border-color: #4C956C;
+    width: 319px;
+    height: 36px;
+}
+.footer-donation:hover {
+    border-color: #4C956C;
+    color: white;
+    text-decoration: solid;
+}
+</style>
 <footer class="footer border-top text-center py-3">
     <nav class="navbar navbar-expand">
-      <div class="container">
-        <a class="navbar-brand" href="{% url 'articles:index' %}">
-          <img src="..." alt="Mystery Of Story" class="logo">
-        </a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a class="nav-link {% if view_name == 'pages:about' %}active{% endif %}" href="{% url 'pages:about' %}">
-                О проекте
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {% if view_name == 'articles:all_articles' %}active{% endif %}" href="{% url 'articles:all_articles' %}">
-                Категории
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {% if view_name == 'articles:new_articles' %}active{% endif %}" href="{% url 'articles:new_articles' %}">
-                Новое
-              </a>
-            </li>
-          </ul>
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'articles:index' %}">
+                <img src="{% static 'img/logo.svg' %}" alt="Mystery Of Story" class="logo">Mystery Of Story
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="foot-nav navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if view_name == 'pages:about' %}active{% endif %}" href="{% url 'pages:about' %}">
+                            О проекте
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if view_name == 'articles:all_articles' %}active{% endif %}" href="{% url 'articles:all_articles' %}">
+                            Категории
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if view_name == 'articles:new_articles' %}active{% endif %}" href="{% url 'articles:new_articles' %}">
+                            Новое
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-donation">
+                <a href="...">
+                    <button type="button" class="btn footer-donation">Поддержать</button>
+                </a>
+            </div>
         </div>
-        <div class="donation">
-          <a href="...">
-            <img src="..." alt="Поддержать" class="donation">
-          </a>
-        </div>
-      </div>
     </nav>
 </footer>
