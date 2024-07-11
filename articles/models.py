@@ -10,12 +10,17 @@ User = get_user_model()
 
 class ArticlesCategories(models.Model):
     articles_category_title = models.CharField(
-        max_length=20,
+        max_length=40,
         verbose_name='Категория',
     )
     articles_category_img = models.ImageField(
         upload_to='image/articles_category/',
         verbose_name='Титульная картинка категории',
+    )
+    description = models.CharField(
+        max_length=100,
+        verbose_name='Описание',
+        default='Описание категории',
     )
     created_at = models.DateField(
         auto_now_add=True,

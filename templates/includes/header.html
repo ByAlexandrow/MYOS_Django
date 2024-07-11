@@ -21,24 +21,9 @@ header {
 .nav-link:hover {
     color: white;
 }
-.btn {
-    color: white;
-    font-family: "Unbounded";
-    font-weight: 500;
-    font-style: normal;
-}
-.btn:hover {
-    color: white;
-}
-.dropdown-toggle::after {
-    content: none;
-}
-.dropdown-toggle {
-    background-image: url("{% static 'img/vector.svg' %}");
-    background-repeat: no-repeat;
-    background-position: right center;
-    background-size: 15px;
-    padding-right: 17px;
+.header-category-vector {
+    width: 20px;
+    height: 10px;
 }
 .navbar-brand {
     font-family: "Bruno Ace", sans-serif;
@@ -72,7 +57,7 @@ header {
 <header class="header">
     <nav class="navbar navbar-expand">
         <div class="container header-container">
-            <a class="navbar-brand" href="{% url 'articles:index' %}">
+            <a class="navbar-brand" href="{% url 'homepage:index' %}">
                 <img src="{% static 'img/logo.svg' %}" alt="Mystery Of Story" class="logo">Mystery Of Story
             </a>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -83,11 +68,10 @@ header {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                Категории
-                            </button>
-                        </div>
+                        <a class="nav-link {% if view_name == 'articles:all_categories' %}active{% endif %}" href="{% url 'articles:all_categories' %}">
+                            Категории
+                            <img src="{% static 'img/vector.svg' %}" class="header-category-vector">
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if view_name == 'articles:new_articles' %}active{% endif %}" href="{% url 'articles:new_articles' %}">

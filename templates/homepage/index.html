@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Mystery Of Story{% endblock %}
+{% block content %}
+<style>
+.main-page-img-card-container {
+    position: relative;
+    display: inline-block;
+}
+.main-page-img-card {
+    border-radius: 30px;
+    width: 1360px;
+    height: 414px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+}
+.main-page-ellipse {
+    position: absolute;
+    top: 35%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    width: 188.12px;
+    height: 188.13px;
+    background-image: url("{% static 'img/ellipse271.svg' %}");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #3030A6;
+    font-family: "Unbounded";
+    font-weight: 700;
+    font-style: bold;
+    font-size: 14px;
+}
+.tg-link {
+    text-decoration: none;
+    color: #3030A6;
+}
+.tg-link:hover {
+    color: #3030A6;
+}
+.main-page-img-line {
+    margin-bottom: 20px;
+}
+.category-item {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; 
+}
+.main-page-nav-link {
+    display: flex;
+    align-items: top;
+    text-decoration: none;
+    justify-content: space-between;
+    margin-left: 15px;
+}
+.category-vector {
+    width: 25px;
+    height: 15px;
+    margin-top: 5px;
+}
+.title {
+    font-family: "Unbounded";
+    font-weight: 500;
+    font-style: medium;
+    color: white;
+    margin-bottom: 10px;
+}
+.categories-on-main-page {
+    color: white;
+    font-family: "Unbounded";
+    font-weight: 500;
+    font-style: medium;
+    margin-bottom: 30px;
+}
+.container-category {
+    text-align: start;
+}
+.category-name {
+    width: 339px;
+    height: 55px;
+}
+.category-img {
+    width: 320px;
+    height: 314px;
+    border-radius: 50%;
+    padding: 5px;
+    object-fit: cover;
+    filter: brightness(80%);
+}
+.all-categories-on-main-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.all-categories-item {
+    padding: 5px;
+    box-sizing: border-box;
+}
+.one-category {
+    text-align: center;
+}
+.category-image-container {
+    position: relative;
+    display: inline-block;
+}
+.category-link {
+    position: absolute;
+    top: 85%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+.category-details {
+    margin-top: 10px;
+}
+.category-description {
+    font-family: "Comfortaa";
+    font-weight: 600;
+    font-style: SemiBold;
+    color: white;
+    font-size: 13px;
+}
+.read-articles {
+    width: 1360px;
+    height: 76px;
+    border-radius: 73px;
+    background-color: white;
+    color: #3030A6;
+    font-family: "Unbounded";
+    font-weight: 700;
+    font-style: normal;
+    font-size: 25px;
+    margin-top: 10px;
+}
+.read-articles:hover {
+    background-color: white;
+    color: #3030A6;
+}
+</style>
+<div class="container-main-page">
+    <div class="row justify-content-center">
+        <div class="main-page-img-card-container row">
+            <img src="{% static 'img/main-page-text.svg' %}" class="main-page-text" style="margin-bottom: 10px;">
+            <img src="{% static 'img/myos.png' %}" class="main-page-img-card">
+            <div class="main-page-ellipse">
+                <span class="ellipse-text">
+                    <a href="https://t.me/By_Alexandrow" class="tg-link">by ALEXANDROW</a>
+                </span>
+            </div>
+        </div>
+        <div class="row main-page-category-title justify-content-center">
+            {% for category in categories %}
+                <div class="col-md-3 category-item">
+                    <div class="category-title">
+                        <a class="main-page-nav-link" href="...">
+                            <p class="title">{{ category.articles_category_title }}</p>
+                            <img src="{% static 'img/vector.svg' %}" class="category-vector">
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <img src="{% static 'img/line49.png' %}" class="main-page-img-line" style="margin-bottom: 60px;">
+        <img src="{% static 'img/line49.png' %}" class="main-page-img-line">
+        <div class="row categories-on-main-page">
+            <div class="container-category">
+                <img class="category-name" src="{% static 'img/category.svg' %}">
+                <p class="category-description">Захватывающие истории обо всем и обо всех</p>
+            </div>
+            <div class="all-categories-on-main-page">
+                {% for category in categories %}
+                    <div class="row col-md-35 all-categories-item">
+                        <div class="one-category">
+                            <div class="category-image-container">
+                                <img class="category-img" src="{{ category.articles_category_img.url }}">
+                                <a class="category-link" href="...">
+                                    <img src="{% static 'img/category-link.svg' %}">
+                                </a>
+                            </div>
+                            <div class="category-details justify-content-center">
+                                <p class="category-title">{{ category.articles_category_title }}</p>
+                                <p class="category-description">{{ category.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <a href="...">
+                    <button type="button" class="btn read-articles">ЧИТАТЬ</button>
+                </a>
+            </div>
+        </div>
+        <img src="{% static 'img/line49.png' %}" class="main-page-img-line" style="margin-bottom: 60px;">
+        <img src="{% static 'img/line49.png' %}" class="main-page-img-line">
+    </div>
+</div>
+{% endblock %}

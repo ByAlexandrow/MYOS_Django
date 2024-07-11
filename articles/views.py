@@ -3,11 +3,6 @@ from django.shortcuts import render, get_object_or_404
 from articles.models import Articles, ArticlesCategories
 
 
-def index(request):
-    template = 'articles/index.html'
-    return render(request, template)
-
-
 def all_categories(request):
     categories = ArticlesCategories.objects.all().order_by('-created_at')
     return render(request, 'articles/all_categories.html', {'categories': categories})
