@@ -138,6 +138,76 @@
     background-color: white;
     color: #3030A6;
 }
+.main-page-about-project {
+    width: 317px;
+    height: 55px;
+}
+.main-page-new-articles {
+    width: 200px;
+    height: 55px;
+}
+.all-new-articles-on-main-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.new-article-img {
+    width: 375px;
+    height: 503px;
+    padding: 5px;
+    object-fit: cover;
+    filter: brightness(60%);
+}
+.new-article-image-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.overlay-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.new-articles-title-svg {
+    position: absolute;
+    width: 330px;
+    height: 43px;
+    transform: translateX(18px) translateY(-210px);
+}
+.title-text {
+    color: #3030A6;
+    font-family: "Unbounded";
+    font-weight: 700;
+    font-style: bold;
+    z-index: 2;
+    text-align: center;
+    transform: translateX(18px) translateY(-202px);
+}
+.overlay-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-family: "Comfortaa";
+    font-weight: 600;
+    font-style: SemiBold;
+    color: #AEAEAE;
+    font-size: 16px;
+    padding: 10px;
+    margin-left: 5px;
+}
+.overlay-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    transform: translateX(-15px) translateY(-15px);
+}
 </style>
 <div class="container-main-page">
     <div class="row justify-content-center">
@@ -181,7 +251,7 @@
                             </div>
                             <div class="category-details justify-content-center">
                                 <p class="category-title">{{ category.articles_category_title }}</p>
-                                <p class="category-description">{{ category.description }}</p>
+                                <p class="category-description">{{ category.articles_category_description }}</p>
                             </div>
                         </div>
                     </div>
@@ -193,6 +263,48 @@
         </div>
         <img src="{% static 'img/line49.png' %}" class="main-page-img-line" style="margin-bottom: 60px;">
         <img src="{% static 'img/line49.png' %}" class="main-page-img-line">
+        <div class="row about-project">
+            <img src="{% static 'img/about.svg' %}" class="main-page-about-project">
+            <div class="text-about">
+                Здесь текст будет
+            </div>
+        </div>
+        <img src="{% static 'img/line49.png' %}" class="main-page-img-line" style="margin-bottom: 60px;">
+        <img src="{% static 'img/line49.png' %}" class="main-page-img-line">
+        <div class="row new-articles-on-main-page">
+            <div class="container-new-articles">
+                <img src="{% static 'img/new.svg' %}" class="main-page-new-articles">
+            </div>
+            <div class="all-new-articles-on-main-page">
+                {% for new_article in new_articles %}
+                    <div class="row col-md-4 all-new-articles-item">
+                        <div class="new-article">
+                            <div class="new-article-image-container">
+                                <img class="new-article-img" src="{{ new_article.articles_title_img.url }}">
+                                <div class="overlay-text">
+                                    <img class="new-articles-title-svg" src="{% static 'img/new_articles_title.svg' %}">
+                                    <div class="title-text">
+                                        <p class="new-article-title">{{ new_article.articles_title }}</p>
+                                    </div>
+                                </div>
+                                <div class="overlay-description">
+                                    <p class="new-article-description">{{ new_article.articles_description|truncatewords:5|safe }}</p>
+                                </div>
+                                <div class="overlay-icon">
+                                    <a href="...">
+                                        <img src="{% static 'img/arrow_new_articles.svg' %}">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <a href="{% url 'articles:new_articles' %}">
+                    <button type="button" class="btn read-articles">СМОТРЕТЬ ВСЕ</button>
+                </a>
+            </div>
+        </div>
+        <img src="{% static 'img/line49.png' %}" class="main-page-img-line" style="margin-top: 20px;">
     </div>
 </div>
 {% endblock %}

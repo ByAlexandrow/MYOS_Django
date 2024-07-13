@@ -17,7 +17,7 @@ class ArticlesCategories(models.Model):
         upload_to='image/articles_category/',
         verbose_name='Титульная картинка категории',
     )
-    description = models.CharField(
+    articles_category_description = models.CharField(
         max_length=100,
         verbose_name='Описание',
         default='Описание категории',
@@ -96,7 +96,7 @@ class Articles(models.Model):
         auto_now=True,
         verbose_name='Дата обновления',
     )
-    created_at = models.DateField(
+    created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата создания',
     )
@@ -159,7 +159,7 @@ class AbstractModel(models.Model):
         if self.__class__.objects.filter(
             user=self.user, article=self.article
         ).exists():
-            raise ValidationError('Такая запись уже существует!')
+            raise ValidationError('Запись уже существует!')
 
 
 class ArticlesFavorites(AbstractModel):
@@ -175,4 +175,4 @@ class ArticlesFavorites(AbstractModel):
         ]
 
     def __str__(self):
-        return f'{self.user} добавил статью {self.article} в избранное!'
+        return f'Вы добавили статью {self.article} в избранное!'

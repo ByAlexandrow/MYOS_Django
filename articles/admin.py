@@ -7,10 +7,10 @@ from articles.models import (
 
 
 @admin.register(Articles)
-class LegendsAdmin(admin.ModelAdmin):
+class ArticlesAdmin(admin.ModelAdmin):
     list_display = (
-        'articles_title', 'articles_title_img', 'articles_description',
-        'articles_text', 'category', 'author', 'update', 'created_at',
+        'articles_title', 'articles_title_img',
+        'category', 'author', 'update', 'created_at',
         'is_published'
     )
     list_display_links = ('articles_title', 'category',)

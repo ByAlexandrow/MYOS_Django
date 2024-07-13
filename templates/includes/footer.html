@@ -13,7 +13,7 @@ footer {
 }
 .footer-donation {
     color: white;
-    font-family: "Unbounded", Medium 500;
+    font-family: "Unbounded";
     font-weight: 500;
     font-style: normal;
     background-color: #3030A6;
@@ -28,7 +28,8 @@ footer {
     text-decoration: solid;
 }
 </style>
-<footer class="footer border-top text-center py-3">
+<footer class="footer text-center py-3">
+    <img src="{% static 'img/line49.png' %}" class="main-page-img-line">
     <nav class="navbar navbar-expand">
         <div class="container">
             <a class="navbar-brand" href="{% url 'homepage:index' %}">
@@ -42,7 +43,7 @@ footer {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if view_name == 'articles:all_articles' %}active{% endif %}" href="{% url 'articles:all_articles' %}">
+                        <a class="nav-link {% if view_name == 'articles:all_categories' %}active{% endif %}" href="...">
                             Категории
                         </a>
                     </li>
