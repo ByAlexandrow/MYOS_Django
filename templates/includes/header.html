@@ -68,7 +68,7 @@ header {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if view_name == 'articles:all_categories' %}active{% endif %}" href="...">
+                        <a class="nav-link {% if view_name == 'articles:all_categories' %}active{% endif %}" href="{% url 'articles:all_categories' 1 %}">
                             Категории
                             <img src="{% static 'img/vector.svg' %}" class="header-category-vector">
                         </a>

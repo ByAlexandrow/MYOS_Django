@@ -10,7 +10,7 @@ from articles.models import (
 class ArticlesAdmin(admin.ModelAdmin):
     list_display = (
         'articles_title', 'articles_title_img',
-        'category', 'author', 'update', 'created_at',
+        'category', 'author', 'created_at',
         'is_published'
     )
     list_display_links = ('articles_title', 'category',)

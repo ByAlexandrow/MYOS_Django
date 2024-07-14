@@ -224,7 +224,7 @@
             {% for category in categories %}
                 <div class="col-md-3 category-item">
                     <div class="category-title">
-                        <a class="main-page-nav-link" href="...">
+                        <a class="main-page-nav-link" href="{% url 'articles:all_categories' category.id %}">
                             <p class="title">{{ category.articles_category_title }}</p>
                             <img src="{% static 'img/vector.svg' %}" class="category-vector">
                         </a>
@@ -245,7 +245,7 @@
                         <div class="one-category">
                             <div class="category-image-container">
                                 <img class="category-img" src="{{ category.articles_category_img.url }}">
-                                <a class="category-link" href="...">
+                                <a class="category-link" href="{% url 'articles:all_categories' category.id %}">
                                     <img src="{% static 'img/category-link.svg' %}">
                                 </a>
                             </div>
@@ -256,7 +256,7 @@
                         </div>
                     </div>
                 {% endfor %}
-                <a href="...">
+                <a href="{% url 'articles:all_categories' 1 %}">
                     <button type="button" class="btn read-articles">ЧИТАТЬ</button>
                 </a>
             </div>
@@ -291,7 +291,7 @@
                                     <p class="new-article-description">{{ new_article.articles_description|truncatewords:5|safe }}</p>
                                 </div>
                                 <div class="overlay-icon">
-                                    <a href="...">
+                                    <a href="{% url 'articles:article_detail' new_article.id %}">
                                         <img src="{% static 'img/arrow_new_articles.svg' %}">
                                     </a>
                                 </div>

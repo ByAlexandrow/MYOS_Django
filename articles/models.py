@@ -68,11 +68,12 @@ class Articles(models.Model):
         upload_to='image/articles_img/',
         verbose_name='Титульная картинка',
     )
-    articles_description = HTMLField(
-        default='Здесь надо добавить описание статьи для титульной страницы!',
+    articles_description = models.CharField(
+        max_length=50,
+        default='Описание статьи для титульной страницы!',
         verbose_name='Описание статьи',
     )
-    articles_text = HTMLField(
+    articles_text = models.TextField(
         default='Здесь надо добавить текст статьи!',
         verbose_name='Текст статьи',
     )
@@ -91,10 +92,6 @@ class Articles(models.Model):
         on_delete=models.CASCADE,
         null=True,
         verbose_name='Автор'
-    )
-    update = models.DateField(
-        auto_now=True,
-        verbose_name='Дата обновления',
     )
     created_at = models.DateTimeField(
         auto_now_add=True,

@@ -92,7 +92,7 @@
                                     <p class="new-article-description">{{ new_article.articles_description|truncatewords:10|safe }}</p>
                                 </div>
                                 <div class="overlay-icon">
-                                    <a href="...">
+                                    <a href="{% url 'articles:article_detail' new_article.id %}">
                                         <img src="{% static 'img/arrow_new_articles.svg' %}">
                                     </a>
                                 </div>
