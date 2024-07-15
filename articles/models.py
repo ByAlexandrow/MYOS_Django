@@ -73,7 +73,7 @@ class Articles(models.Model):
         default='Описание статьи для титульной страницы!',
         verbose_name='Описание статьи',
     )
-    articles_text = models.TextField(
+    articles_text = HTMLField(
         default='Здесь надо добавить текст статьи!',
         verbose_name='Текст статьи',
     )

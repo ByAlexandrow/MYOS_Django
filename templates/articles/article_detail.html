@@ -44,7 +44,7 @@
 .title-article-img {
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 .article-title-name {
     color: white;
@@ -116,9 +116,9 @@
                 <img class="article-title-img" src="{{ article.articles_title_img.url }}">
                 <h4 class="article-title-name">{{ article.articles_title }}</h4>
             </div>
-            <div class="article-text">
+            <!--<div class="article-text">
                 <p class="text-of-article">{{ article.articles_text|safe }}</p>
-            </div>
+            </div>-->
         </div>
         <div class="row btn-back">
             <a class="btn-back-link" href="javascript:history.back()">

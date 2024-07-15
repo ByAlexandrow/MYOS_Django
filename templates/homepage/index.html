@@ -14,6 +14,9 @@
     background-size: cover;
     background-position: center;
     margin-bottom: 20px;
+    padding: 5px;
+    object-fit: cover;
+    filter: brightness(80%);
 }
 .main-page-ellipse {
     position: absolute;
@@ -267,6 +270,11 @@
             <img src="{% static 'img/about.svg' %}" class="main-page-about-project">
             <div class="text-about">
                 Здесь текст будет
+            </div>
+            <div class="main-about-project-ellipse">
+                <a href="https://t.me/MysteryOfStory" class="tg-link">
+                    <!--<img class="main-about-project-img" src="...">-->
+                </a>
             </div>
         </div>
         <img src="{% static 'img/line49.png' %}" class="main-page-img-line" style="margin-bottom: 60px;">

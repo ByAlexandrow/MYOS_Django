@@ -30,5 +30,27 @@
             </div>
         </main>
         {% include "includes/footer.html" %}
+        <script src="https://myreviews.dev/widget/dist/index.js" defer></script>
+        <script>
+            (function (){
+              var myReviewsInit = function () {
+                new window.myReviews.VerticalWidget({
+                  uuid: "7509e264-c316-4624-80ea-c48f5e37865e",
+                  name: "g5729621",
+                  additionalFrame: "button",
+                  variant: "default",
+                  lang:"ru",
+                  widgetId: "2"
+                }).init();
+              };
+            if (document.readyState === "loading") {
+              document.addEventListener('DOMContentLoaded', function () {
+                  myReviewsInit()
+              })
+            } else {
+              myReviewsInit()
+            }
+            })()
+        </script>
     </body>
 </html>
