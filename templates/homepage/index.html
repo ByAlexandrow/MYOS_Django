@@ -211,6 +211,40 @@
     padding: 10px;
     transform: translateX(-15px) translateY(-15px);
 }
+.row.about-project {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.main-text-about {
+    color: white;
+    font-family: "Unbounded";
+    font-weight: 400;
+    font-style: regular;
+    font-size: 20px;
+    text-align: right;
+    display: flex;
+    width: 100%;
+}
+.main-page-title-about {
+    color: white;
+    font-family: "Unbounded";
+    font-weight: 400;
+    font-style: regular;
+    font-size: 20px;
+    text-align: right;
+}
+.main-page-about {
+    width: 100%;
+    padding-right: 30px;
+}
+.col-9 {
+    width: 75%;
+    text-align: right;
+}
+.col-3 {
+    width: 25%;
+}
 </style>
 <div class="container-main-page">
     <div class="row justify-content-center">
@@ -267,14 +301,23 @@
         <img src="{% static 'img/line49.png' %}" class="main-page-img-line" style="margin-bottom: 60px;">
         <img src="{% static 'img/line49.png' %}" class="main-page-img-line">
         <div class="row about-project">
-            <img src="{% static 'img/about.svg' %}" class="main-page-about-project">
-            <div class="text-about">
-                Здесь текст будет
+            <img src="{% static 'img/about.svg' %}" class="col-3 main-page-about-project">
+            <div class="col-9 main-page-title-about">
+                Mystery Of Story
             </div>
-            <div class="main-about-project-ellipse">
-                <a href="https://t.me/MysteryOfStory" class="tg-link">
-                    <!--<img class="main-about-project-img" src="...">-->
-                </a>
+            <div class="main-text-about">
+                <div class="col-3"></div>
+                <div class="col-9 main-page-about">
+                    Текст about project    это текст оп роекте, он будет располагаться здесь,
+                    только я не знаю, зачем и для чего, но сейчас я тестирую его расположение.
+                    Вроде все работает, расположение верное, осталось поработать с дизайном этого блока
+                    и отредактировать его
+                    <div class="col-3 main-about-project-ellipse">
+                        <a href="https://t.me/MysteryOfStory" class="tg-link">
+                            <img class="main-about-project-img" src="...">
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
         <img src="{% static 'img/line49.png' %}" class="main-page-img-line" style="margin-bottom: 60px;">
