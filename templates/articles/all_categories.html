@@ -86,11 +86,13 @@
 .all-article-in-main-category {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
 }
 .all-article-in-main-category-item {
-    padding: 5px;
-    box-sizing: border-box;
+    width: calc(33.33% - 10px);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
 }
 .one-article {
     text-align: center;
@@ -109,9 +111,12 @@
     height: 43px;
 }
 .one-article-details {
-    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .one-article-title {
+    margin: 0;
     font-family: "Unbounded";
     font-weight: 700;
     font-style: bold;
@@ -119,6 +124,7 @@
     color: white;
 }
 .one-article-description {
+    margin: 0;
     font-family: "Comfortaa";
     font-weight: 600;
     font-style: semibold;
@@ -139,6 +145,18 @@
     background-color: #3030A6;
     border-color: #4C956C;
     color: white;
+}
+@media (max-width: 768px) {
+    .main-page-title {
+        text-align: center;
+    }
+    .all-categories-img-card {
+        width: 355px;
+        height: 240px;
+    }
+    .all-categories-with-articles {
+        display: none;
+    }
 }
 </style>
 <div class="container-all-categories-page">

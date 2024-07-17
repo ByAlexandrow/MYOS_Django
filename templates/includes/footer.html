@@ -27,6 +27,40 @@ footer {
     color: white;
     text-decoration: solid;
 }
+@media (max-width: 768px) {
+    .footer .navbar-brand {
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .footer .foot-nav {
+        flex-direction: column;
+        text-align: center;
+    }
+    .foot-nav .nav-item {
+        margin-bottom: 5px;
+    }
+    .footer-donation {
+        text-align: center;
+        color: white;
+        font-family: "Unbounded";
+        font-weight: 500;
+        font-style: medium;
+        background-color: #3030A6;
+        border-radius: 22px;
+        border-color: #4C956C;
+        width: 299px;
+        height: 43px;
+        margin-top: 5px;
+    }
+    .footer-donation:hover {
+        align-items: center;
+        text-align: center;
+        border-color: #4C956C;
+        color: white;
+        text-decoration: solid;
+    }
+}
 </style>
 <footer class="footer text-center py-3">
     <img src="{% static 'img/line49.png' %}" class="main-page-img-line">
