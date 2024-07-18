@@ -25,19 +25,30 @@ header {
     width: 20px;
     height: 10px;
 }
-.navbar-brand {
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar-brand-header span {
+    white-space: nowrap;
+}
+.navbar-brand-header {
     font-family: "Bruno Ace", sans-serif;
     font-weight: 400;
     font-style: normal;
     color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
-.navbar-brand:hover {
+.navbar-brand-header:hover {
     color: white;
 }
-.logo {
+.header-logo {
     margin-right: 10px;
 }
-.donation {
+.header-donation {
     color: white;
     font-family: "Unbounded";
     font-weight: 500;
@@ -48,46 +59,147 @@ header {
     width: 248px;
     height: 37px;
 }
-.donation:hover {
+.header-donation:hover {
     border-color: #4C956C;
     color: white;
     text-decoration: solid;
 }
+.toggle-menu-icon {
+    display: none;
+}
+.menu-links {
+    display: none;
+}
 @media (max-width: 768px) {
-    .logo {
+    .header-container {
+        flex-direction: row;
+        justify-content: center;
+    }
+    .navbar-brand-header {
+        flex-direction: row;
+        justify-content: center;
+    }
+    .navbar-brand-header {
+        font-size: 15px;
+    }
+    .navbar-brand-header:hover {
+        color: white;
+    }
+    .header-logo {
+        margin-right: 10px;
+        width: 30px;
+        height: 42px;
+    }
+    .head-nav, .header-donation {
+        display: none;
+    }
+    .toggle-menu-icon {
+        display: block;
+        width: 20px;
+        height: 17px;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+    }
+    .menu-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        background-color: #3030A6;
+        width: 100%;
         text-align: center;
+    }
+    .menu-links ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .menu-links li {
+        padding: 10px;
+        border-bottom: 1px solid #3030A6;
+    }
+    .menu-links li:last-child {
+        border-bottom: none;
+    }
+    .menu-donation {
+        text-align: center;
+        color: white;
+        font-family: "Unbounded";
+        font-weight: 500;
+        font-style: medium;
+        background-color: #3030A6;
+        border-radius: 22px;
+        border-color: #4C956C;
+        width: 299px;
+        height: 43px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+    .menu-donation:hover {
+        align-items: center;
+        text-align: center;
+        border-color: #4C956C;
+        color: white;
+        text-decoration: solid;
     }
 }
 </style>
 <header class="header">
-    <nav class="navbar navbar-expand">
+    <nav class="navbar navbar-expand nav-ex-header">
         <div class="container header-container">
-            <a class="navbar-brand" href="{% url 'homepage:index' %}">
-                <img src="{% static 'img/logo.svg' %}" alt="Mystery Of Story" class="logo">Mystery Of Story
+            <a class="navbar-brand-header" href="{% url 'homepage:index' %}">
+                <img src="{% static 'img/logo.svg' %}" alt="Mystery Of Story" class="header-logo">
+                <span>Mystery Of Story</span>
             </a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="head-nav navbar-nav mx-auto">
-                    <li class="nav-item">
+            <img src="{% static 'img/hamburger.svg' %}" alt="Toggle-Menu" class="toggle-menu-icon">
+            <div class="menu-links">
+                <ul>
+                    <li class="header-nav-item">
                         <a class="nav-link" href="{% url 'homepage:index' %}#about-project">
                             О проекте
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="header-nav-item">
+                        <a class="nav-link {% if view_name == 'articles:all_categories' %}active{% endif %}" href="{% url 'articles:all_categories' 1 %}">
+                            Категории
+                        </a>
+                    </li>
+                    <li class="header-nav-item">
+                        <a class="nav-link {% if view_name == 'articles:new_articles' %}active{% endif %}" href="{% url 'articles:new_articles' %}">
+                            Новое
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://boosty.to/by_alexandrow/donate">
+                            <button type="button" class="btn menu-donation">Поддержать</button>
+                        </a>            
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="head-nav navbar-nav mx-auto">
+                    <li class="header-nav-item">
+                        <a class="nav-link" href="{% url 'homepage:index' %}#about-project">
+                            О проекте
+                        </a>
+                    </li>
+                    <li class="header-nav-item">
                         <a class="nav-link {% if view_name == 'articles:all_categories' %}active{% endif %}" href="{% url 'articles:all_categories' 1 %}">
                             Категории
                             <img src="{% static 'img/vector.svg' %}" class="header-category-vector">
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="header-nav-item">
                         <a class="nav-link {% if view_name == 'articles:new_articles' %}active{% endif %}" href="{% url 'articles:new_articles' %}">
                             Новое
                         </a>
                     </li>
                 </ul>
             </div>
-            <div class="donation">
+            <div class="header-donation">
                 <a href="https://boosty.to/by_alexandrow/donate">
-                    <button type="button" class="btn donation">Поддержать</button>
+                    <button type="button" class="btn header-donation">Поддержать</button>
                 </a>
             </div>
         </div>
@@ -112,5 +224,19 @@ header {
                 }
             });
         }
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleMenuIcon = document.querySelector('.toggle-menu-icon');
+        const menuLinks = document.querySelector('.menu-links');
+    
+        toggleMenuIcon.addEventListener('click', function() {
+            if (menuLinks.style.display === 'block') {
+                menuLinks.style.display = 'none';
+            } else {
+                menuLinks.style.display = 'block';
+            }
+        });
     });
 </script>

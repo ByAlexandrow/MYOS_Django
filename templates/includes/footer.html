@@ -4,6 +4,16 @@ footer {
     background-color: #3030A6;
     text-align: center;
 }
+.navbar-brand-footer {
+    font-family: "Bruno Ace", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    text-decoration: none;
+}
+.navbar-brand-footer:hover {
+    color: white;
+}
 .nav-link {
     color: white;
     margin-left: 5px;
@@ -29,15 +39,16 @@ footer {
     text-decoration: solid;
 }
 @media (max-width: 768px) {
-    .navbar .container {
+    .nav-ex-footer .footer-container {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-    .footer .navbar-brand {
+    .footer .navbar-brand-footer {
         display: block;
         text-align: center;
         margin-bottom: 10px;
+        font-size: 20px;
     }
     .navbar-collapse {
         width: 100%;
@@ -48,7 +59,7 @@ footer {
         flex-direction: column;
         text-align: center;
     }
-    .foot-nav .nav-item {
+    .foot-nav .footer-nav-item {
         margin-bottom: 5px;
     }
     .footer-donation {
@@ -74,24 +85,25 @@ footer {
 }
 </style>
 <footer class="footer py-3">
-    <nav class="navbar navbar-expand">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'homepage:index' %}">
-                <img src="{% static 'img/logo.svg' %}" alt="Mystery Of Story" class="logo">Mystery Of Story
+    <nav class="navbar navbar-expand nav-ex-footer">
+        <div class="container footer-container">
+            <a class="navbar-brand-footer" href="{% url 'homepage:index' %}">
+                <img src="{% static 'img/logo.svg' %}" alt="Mystery Of Story" class="logo">
+                <span>Mystery Of Story</span>
             </a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="foot-nav navbar-nav mx-auto">
-                    <li class="nav-item">
+                    <li class="footer-nav-item">
                         <a class="nav-link" href="{% url 'homepage:index' %}#about-project">
                             О проекте
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="footer-nav-item">
                         <a class="nav-link {% if view_name == 'articles:all_categories' %}active{% endif %}" href="{% url 'articles:all_categories' 1 %}">
                             Категории
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="footer-nav-item">
                         <a class="nav-link {% if view_name == 'articles:new_articles' %}active{% endif %}" href="{% url 'articles:new_articles' %}">
                             Новое
                         </a>
