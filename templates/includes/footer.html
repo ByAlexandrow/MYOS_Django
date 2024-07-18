@@ -2,6 +2,7 @@
 <style>
 footer {
     background-color: #3030A6;
+    text-align: center;
 }
 .nav-link {
     color: white;
@@ -28,12 +29,22 @@ footer {
     text-decoration: solid;
 }
 @media (max-width: 768px) {
+    .navbar .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     .footer .navbar-brand {
         display: block;
         text-align: center;
         margin-bottom: 10px;
     }
+    .navbar-collapse {
+        width: 100%;
+        text-align: center;
+    }
     .footer .foot-nav {
+        display: flex;
         flex-direction: column;
         text-align: center;
     }
@@ -62,8 +73,7 @@ footer {
     }
 }
 </style>
-<footer class="footer text-center py-3">
-    <img src="{% static 'img/line49.png' %}" class="main-page-img-line">
+<footer class="footer py-3">
     <nav class="navbar navbar-expand">
         <div class="container">
             <a class="navbar-brand" href="{% url 'homepage:index' %}">
@@ -72,7 +82,7 @@ footer {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="foot-nav navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link {% if view_name == 'pages:about' %}active{% endif %}" href="{% url 'pages:about' %}">
+                        <a class="nav-link" href="{% url 'homepage:index' %}#about-project">
                             О проекте
                         </a>
                     </li>
@@ -96,3 +106,24 @@ footer {
         </div>
     </nav>
 </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var aboutProjectLink = document.querySelector('a[href="{% url 'homepage:index' %}#about-project"]');
+        if (aboutProjectLink) {
+            aboutProjectLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                var targetUrl = this.href;
+                var targetId = targetUrl.split('#')[1];
+    
+                if (window.location.pathname !== "{% url 'homepage:index' %}") {
+                    window.location.href = targetUrl;
+                } else {
+                    var targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        }
+    });
+</script>

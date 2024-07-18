@@ -68,7 +68,7 @@ header {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="head-nav navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link {% if view_name == 'pages:about' %}active{% endif %}" href="{% url 'pages:about' %}">
+                        <a class="nav-link" href="{% url 'homepage:index' %}#about-project">
                             О проекте
                         </a>
                     </li>
@@ -93,3 +93,24 @@ header {
         </div>
     </nav>
 </header>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var aboutProjectLink = document.querySelector('a[href="{% url 'homepage:index' %}#about-project"]');
+        if (aboutProjectLink) {
+            aboutProjectLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                var targetUrl = this.href;
+                var targetId = targetUrl.split('#')[1];
+    
+                if (window.location.pathname !== "{% url 'homepage:index' %}") {
+                    window.location.href = targetUrl;
+                } else {
+                    var targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        }
+    });
+</script>
