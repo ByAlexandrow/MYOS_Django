@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load custom_filters %}
 {% block title %}Mystery Of Story - {{ article.articles_title }}{% endblock %}
 {% block content %}
 <style>
@@ -61,6 +60,18 @@
 }
 .text-of-article {
     color: white;
+    font-family: "Comfortaa";
+    font-weight: 600;
+    font-style: SemiBold;
+}
+.one-article-image {
+    width: 650px;
+    height: 350px;
+    border-radius: 40px;
+    object-fit: cover;
+    filter: brightness(80%);
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 .img-btn-back {
     width: 86px;
@@ -79,6 +90,27 @@
     font-family: "Comfortaa";
     font-weight: 600;
     font-style: semibold;
+}
+.carousel-item {
+    opacity: 0;
+    transition-duration: 0s;
+    transition-property: opacity;
+}
+.carousel-item.active {
+    opacity: 1;
+}
+@media (max-width: 768px) {
+    .artcile-way {
+        display: none;
+    }
+    .article-text {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .article-images {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }
 </style>
 <div class="container-article-detail">
@@ -99,7 +131,7 @@
                 </a>
             </div>
             <div class="to-the-main-category-page">
-                <a class="article-way-link" href="...">
+                <a class="article-way-link" href="{% url 'articles:all_categories' article.category.id %}">
                     <p class="article-way-title">{{ article.category }}
                         <img class="arrow" src="{% static 'img/arrow.svg' %}">
                     </p>
@@ -116,9 +148,72 @@
                 <img class="article-title-img" src="{{ article.articles_title_img.url }}">
                 <h4 class="article-title-name">{{ article.articles_title }}</h4>
             </div>
-            <!--<div class="article-text">
-                <p class="text-of-article">{{ article.articles_text|safe }}</p>
-            </div>-->
+            <div class="row article-detail">
+                {% if article.articles_text_1 %}
+                    <div class="col-6 article-text">
+                        <p class="text-of-article">{{ article.articles_text_1|safe }}</p>
+                    </div>
+                {% endif %}
+                {% if article.article_img_1 %}
+                    <div class="col-6 article-images">
+                        <img src="{{ article.article_img_1.url }}" class="one-article-image" alt="Article Image">
+                    </div>
+                {% endif %}
+                {% if article.articles_text_2 %}
+                    <div class="col-12 article-text">
+                        <p class="text-of-article">{{ article.articles_text_2|safe }}</p>
+                    </div>
+                {% endif %}
+                {% if article.article_img_2 %}
+                    <div class="col-6 article-images">
+                        <img src="{{ article.article_img_2.url }}" class="one-article-image" alt="Article Image">
+                    </div>
+                {% endif %}
+                {% if article.articles_text_3 %}
+                    <div class="col-6 article-text">
+                        <p class="text-of-article">{{ article.articles_text_3|safe }}</p>
+                    </div>
+                {% endif %}
+                {% if article.articles_text_4 %}
+                    <div class="col-12 article-text">
+                        <p class="text-of-article">{{ article.articles_text_4|safe }}</p>
+                    </div>
+                {% endif %}
+                {% if article.articles_text_5 %}
+                    <div class="col-6 article-text">
+                        <p class="text-of-article">{{ article.articles_text_5|safe }}</p>
+                    </div>
+                {% endif %}
+                {% if article.article_img_3 %}
+                    <div class="col-6 article-images">
+                        <img src="{{ article.article_img_3.url }}" class="one-article-image" alt="Article Image">
+                    </div>
+                {% endif %}
+                {% if article.images.all %}
+                    <div class="row justify-content-center">
+                        <div id="articleImagesCarousel" class="carousel slide one-article-image" data-ride="carousel" data-interval="5000">
+                            <ol class="carousel-indicators">
+                                {% for image in article.images.all %}
+                                    <li data-target="#articleImagesCarousel" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+                                {% endfor %}
+                            </ol>
+                            <div class="carousel-inner">
+                                {% for image in article.images.all %}
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                        <img src="{{ image.images.url }}" class="d-block w-100 one-article-image" alt="Article Image">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <a class="carousel-control-prev" href="#articleImagesCarousel" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </a>
+                            <a class="carousel-control-next" href="#articleImagesCarousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
         </div>
         <div class="row btn-back">
             <a class="btn-back-link" href="javascript:history.back()">

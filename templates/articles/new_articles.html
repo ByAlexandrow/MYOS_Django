@@ -4,8 +4,11 @@
 {% block content %}
 <style>
 .main-page-new-articles {
-    width: 200px;
-    height: 55px;
+    color: white;
+    font-family: "Unbounded";
+    font-weight: 700;
+    font-style: bold;
+    font-size: 44px;
 }
 .all-new-articles-on-main-page {
     display: flex;
@@ -121,7 +124,7 @@
     <div class="row justify-content-center">
         <div class="row new-articles-on-main-page">
             <div class="container-new-articles">
-                <img src="{% static 'img/new.svg' %}" class="main-page-new-articles">
+                <p class="main-page-new-articles">НОВОЕ</p>
             </div>
             <div class="all-new-articles-on-main-page">
                 {% for new_article in news %}

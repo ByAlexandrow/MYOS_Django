@@ -2,19 +2,24 @@ from django.contrib import admin
 
 from articles.models import (
     Articles, ArticlesCategories,
-    ArticlesFavorites, ArticlesReactions
+    ArticlesFavorites, ArticlesReactions,
+    ArticlesImage
 )
+
+class ArticlesImageInline(admin.StackedInline):
+    model = ArticlesImage
+    extra = 1
 
 
 @admin.register(Articles)
 class ArticlesAdmin(admin.ModelAdmin):
     list_display = (
-        'articles_title', 'articles_title_img',
-        'category', 'author', 'created_at',
-        'is_published'
+        'articles_title', 'category', 'author',
+        'created_at', 'is_published'
     )
     list_display_links = ('articles_title', 'category',)
     list_filter = ('category',)
+    inlines = [ArticlesImageInline]
 
 
 @admin.register(ArticlesCategories)

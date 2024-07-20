@@ -78,11 +78,17 @@
     margin-bottom: 30px;
 }
 .container-category {
-    text-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 .category-name {
-    width: 339px;
-    height: 55px;
+    color: white;
+    font-family: "Unbounded";
+    font-weight: 700;
+    font-style: bold;
+    font-size: 38px;
+    margin-bottom: 0;
 }
 .category-img {
     width: 320px;
@@ -124,6 +130,7 @@
     font-style: SemiBold;
     color: white;
     font-size: 13px;
+    margin-top: 0;
 }
 .read-articles {
     width: 1360px;
@@ -142,12 +149,18 @@
     color: #3030A6;
 }
 .main-page-about-project {
-    width: 317px;
-    height: 55px;
+    color: white;
+    font-family: "Unbounded";
+    font-weight: 700;
+    font-style: bold;
+    font-size: 38px;
 }
 .main-page-new-articles {
-    width: 200px;
-    height: 55px;
+    color: white;
+    font-family: "Unbounded";
+    font-weight: 700;
+    font-style: bold;
+    font-size: 38px;
 }
 .all-new-articles-on-main-page {
     display: flex;
@@ -246,6 +259,30 @@
     width: 25%;
 }
 @media (max-width: 768px) {
+    .category-name {
+        color: white;
+        font-family: "Unbounded";
+        font-weight: 700;
+        font-style: bold;
+        font-size: 35px;
+        margin-bottom: 0;
+    }
+    .main-page-about-project {
+        color: white;
+        font-family: "Unbounded";
+        font-weight: 700;
+        font-style: bold;
+        font-size: 35px;
+        margin-bottom: 0;
+    }
+    .main-page-new-articles {
+        color: white;
+        font-family: "Unbounded";
+        font-weight: 700;
+        font-style: bold;
+        font-size: 35px;
+        margin-bottom: 0;
+    }
     .main-page-img-card {
         width: 362px;
         height: 233px;
@@ -268,7 +305,6 @@
     .main-page-new-articles {
         text-align: center;
     }
-    
 }
 </style>
 <div class="container-main-page">
@@ -298,8 +334,8 @@
         <img src="{% static 'img/line49.png' %}" class="main-page-img-line">
         <div class="row categories-on-main-page">
             <div class="container-category">
-                <img class="category-name" src="{% static 'img/category.svg' %}">
-                <p class="category-description">Захватывающие истории обо всем и обо всех</p>
+                <p class="category-name">КАТЕГОРИИ</p>
+                <p class="category-description">Истории обо всем и обо всех</p>
             </div>
             <div class="all-categories-on-main-page">
                 {% for category in categories %}
@@ -326,17 +362,13 @@
         <img src="{% static 'img/line49.png' %}" class="main-page-img-line" style="margin-bottom: 60px;" id="about-project">
         <img src="{% static 'img/line49.png' %}" class="main-page-img-line">
         <div class="row about-project">
-            <img src="{% static 'img/about.svg' %}" class="col-3 main-page-about-project">
-            <div class="col-9 main-page-title-about">
-                Mystery Of Story
-            </div>
+            <p class="main-page-about-project">О ПРОЕКТЕ</p>
             <div class="main-text-about">
                 <div class="col-3"></div>
                 <div class="col-9 main-page-about">
-                    Текст about project это текст оп роекте, он будет располагаться здесь,
-                    только я не знаю, зачем и для чего, но сейчас я тестирую его расположение.
-                    Вроде все работает, расположение верное, осталось поработать с дизайном этого блока
-                    и отредактировать его
+                    <p>Mystery Of Story</p>
+                    <p>Это место, где хранятся легенды и мифы разных стран и народов, истории изобретений, тайных организаций и известных брендов.</p>
+                    <p>Мы открываем мир неизвестных историй, тайн и загадок.</p>
                     <div class="col-3 main-about-project-ellipse">
                         <a href="https://t.me/MysteryOfStory" class="tg-link">
                             <img class="main-about-project-img" src="...">
@@ -349,7 +381,7 @@
         <img src="{% static 'img/line49.png' %}" class="main-page-img-line">
         <div class="row new-articles-on-main-page">
             <div class="container-new-articles">
-                <img src="{% static 'img/new.svg' %}" class="main-page-new-articles">
+                <p class="main-page-new-articles">НОВОЕ</p>
             </div>
             <div class="all-new-articles-on-main-page">
                 {% for new_article in new_articles %}
