@@ -258,12 +258,50 @@
 .col-3 {
     width: 25%;
 }
+.about-human-text {
+    font-family: "Bad Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+.main-page-title-text-right {
+    color: white;
+    font-family: "Unbounded";
+    font-weight: 700;
+    font-style: bold;
+    font-size: 35px;
+    text-align: right;
+}
+.main-page-title-text-left {
+    color: white;
+    font-family: "Unbounded";
+    font-weight: 700;
+    font-style: bold;
+    font-size: 35px;
+    text-align: left;
+}
+.main-page-title-text-right, .main-page-title-text-left {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.carousel-item {
+    opacity: 0;
+    transition-duration: 0s;
+    transition-property: opacity;
+}
+.carousel-item.active {
+    opacity: 1;
+}
 @media (max-width: 768px) {
+    .main-page-title-text-right, .main-page-title-text-left {
+        text-align: center;
+    }
+    .container-category {
+        align-items: center;
+    }
+    .main-page-about-project {
+        text-align: center;
+    }
     .category-name {
-        color: white;
-        font-family: "Unbounded";
-        font-weight: 700;
-        font-style: bold;
         font-size: 35px;
         margin-bottom: 0;
     }
@@ -282,6 +320,9 @@
         font-style: bold;
         font-size: 35px;
         margin-bottom: 0;
+    }
+    .main-carousel {
+        align-items: center;
     }
     .main-page-img-card {
         width: 362px;
@@ -310,8 +351,34 @@
 <div class="container-main-page">
     <div class="row justify-content-center">
         <div class="main-page-img-card-container row">
-            <img src="{% static 'img/main-page-text.svg' %}" class="main-page-text" style="margin-bottom: 10px;">
-            <img src="{% static 'img/myos.png' %}" class="main-page-img-card">
+            <p class="main-page-title-text-right">
+                В поисках корней нашего прошлого
+            </p>
+            <p class="main-page-title-text-left">
+                мы раскрываем истории, которые определяют наше настоящее
+            </p>
+            <div class="row main-carousel">
+                <div id="mainPageCarousel" class="carousel slide main-page-img-card" data-ride="carousel" data-interval="5000">
+                    <ol class="carousel-indicators">
+                        {% for category in categories %}
+                            <li data-target="#mainPageCarousel" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+                        {% endfor %}
+                    </ol>
+                    <div class="carousel-inner">
+                        {% for category in categories %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <img src="{{ category.articles_category_img.url }}" class="d-block w-100 main-page-img-card" alt="Article Image">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#mainPageCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#mainPageCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
             <div class="main-page-ellipse">
                 <span class="ellipse-text">
                     <a href="https://t.me/By_Alexandrow" class="tg-link">by ALEXANDROW</a>
@@ -366,14 +433,22 @@
             <div class="main-text-about">
                 <div class="col-3"></div>
                 <div class="col-9 main-page-about">
-                    <p>Mystery Of Story</p>
-                    <p>Это место, где хранятся легенды и мифы разных стран и народов, истории изобретений, тайных организаций и известных брендов.</p>
-                    <p>Мы открываем мир неизвестных историй, тайн и загадок.</p>
-                    <div class="col-3 main-about-project-ellipse">
-                        <a href="https://t.me/MysteryOfStory" class="tg-link">
-                            <img class="main-about-project-img" src="...">
-                        </a>
-                    </div>
+                    <p class="about-human-text">Mystery Of Story</p>
+                    <p class="about-human-text">
+                        В ночной тиши, когда звезды сияют как слезы забытых легенд, я пишу эти строки, словно последний приказ перед битвой.
+                        Моя рука дрожит, не от страха, а от нетерпения — нетерпения рассказать о тайнах, которые я обнаружил здесь, в глубинах этого древнего города.
+                    </p>
+                    <p class="about-human-text">
+                        Здесь, среди каменных лабиринтов и загадочных символов, каждый шаг — это откровение.
+                        Я видел ритуалы, которые не были предназначены для человеческого глаза, слышал голоса, которые не принадлежат этому миру.
+                        И все это — лишь частица того, что ждет меня впереди.
+                    </p>
+                    <p class="about-human-text">
+                        Но время ускользает, как песок сквозь пальцы.
+                        Я чувствую приближение чего-то великого, чего-то, что изменит понимание истории и мифологии.
+                        И все же, я не успею записать все, что видел и переживал.
+                        Эти строки — мой последний шанс оставить след, прежде чем...
+                    </p>
                 </div>
             </div>
         </div>
