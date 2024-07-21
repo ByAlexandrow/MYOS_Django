@@ -10,16 +10,18 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - PYTHONUNBUFFERED=1
+      - STATIC_URL=/static/
+      - STATICFILES_DIRS=/app/static
+      - MEDIA_URL=/media/
+      - MEDIA_ROOT=/app/media
     depends_on:
       - db
 
   db:
-   db:
     image: postgres:13
     env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
 
 volumes:
-  postgres_data:
+  pg_data:
