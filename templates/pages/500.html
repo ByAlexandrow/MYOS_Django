@@ -1,7 +1,55 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Ошибка сервера{% endblock %}
 {% block content %}
-  <h1>Ошибка сервера</h1>
-  <p>На сервере что-то пошло не так!</p>
-  <a href="{% url 'homepage:index' %}">Вернуться на главную</a>
+<style>
+.container-error-500 {
+    text-align: center;
+}
+.error-500-title {
+    color: white;
+    font-family: "Unbounded";
+    font-weight: 700;
+    font-style: bold;
+    font-size: 44px;
+}
+.error-500-description {
+    color: white;
+    font-size: 20px;
+    font-family: "Comfortaa";
+    font-weight: 600;
+    font-style: semibold;
+}
+.img-btn-back {
+    width: 86px;
+    height: 86px;
+    margin-right: 15px;
+}
+.btn-back {
+    margin-bottom: 15px;
+}
+.btn-back-link {
+    text-decoration: none;
+}
+.btn-back-word {
+    color: white;
+    font-size: 24px;
+    font-family: "Comfortaa";
+    font-weight: 600;
+    font-style: semibold;
+}
+</style>
+<div class="container-error-500">
+    <p class="error-500-title">Ошибка сервера</p>
+    <p class="error-500-description">На сервере что-то пошло не так!</p>
+    <img src="{% static 'img/little_myos.png' %}" class="myos-fixs-bugs-img">
+    <p class="error-500-description">Разбираемся и исправляем</p>
+    <div class="row btn-back">
+        <a class="btn-back-link" href="javascript:history.back()">
+            <p class="btn-back-word">
+                <img class="img-btn-back" src="{% static 'img/button-back.svg' %}">Назад
+            </p>
+        </a>
+    </div>
+</div>
 {% endblock %}
