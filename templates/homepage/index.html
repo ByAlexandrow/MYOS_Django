@@ -3,21 +3,6 @@
 {% block title %}Mystery Of Story{% endblock %}
 {% block content %}
 <style>
-.main-page-img-card-container {
-    position: relative;
-    display: inline-block;
-}
-.main-page-img-card {
-    border-radius: 30px;
-    width: 1360px;
-    height: 414px;
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 20px;
-    padding: 5px;
-    object-fit: cover;
-    filter: brightness(80%);
-}
 .main-page-ellipse {
     position: absolute;
     top: 35%;
@@ -35,28 +20,6 @@
     font-weight: 700;
     font-style: bold;
     font-size: 14px;
-}
-.tg-link {
-    text-decoration: none;
-    color: #3030A6;
-}
-.tg-link:hover {
-    color: #3030A6;
-}
-.main-page-img-line {
-    margin-bottom: 20px;
-}
-.category-item {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px; 
-}
-.main-page-nav-link {
-    display: flex;
-    align-items: top;
-    text-decoration: none;
-    justify-content: space-between;
-    margin-left: 15px;
 }
 .category-vector {
     width: 25px;
@@ -294,6 +257,7 @@
 @media (max-width: 768px) {
     .main-page-title-text-right, .main-page-title-text-left {
         text-align: center;
+        font-size: 35px;
     }
     .container-category {
         align-items: center;
@@ -302,15 +266,31 @@
         text-align: center;
     }
     .category-name {
-        font-size: 35px;
+        font-size: 40px;
         margin-bottom: 0;
+    }
+    .category-img {
+        width: 360px;
+        height: 350px;
+    }
+    .category-link {
+        top: 80%;
+        left: 80%;
+        width: 45px;
+        height: 45px;
+    }
+    .category-description {
+        font-size: 19px;
+    }
+    .category-title {
+        font-size: 25px;
     }
     .main-page-about-project {
         color: white;
         font-family: "Unbounded";
         font-weight: 700;
         font-style: bold;
-        font-size: 35px;
+        font-size: 40px;
         margin-bottom: 0;
     }
     .main-page-new-articles {
@@ -322,11 +302,11 @@
         margin-bottom: 0;
     }
     .main-carousel {
-        align-items: center;
+        justify-content: center;
     }
     .main-page-img-card {
-        width: 362px;
-        height: 233px;
+        width: 450px;
+        height: 275px;
     }
     .main-page-ellipse {
         display: none;
@@ -345,12 +325,21 @@
     }
     .main-page-new-articles {
         text-align: center;
+        font-size: 40px;
+    }
+    .col-3 {
+        display: none;
+    }
+    .col-9 {
+        width: 100%;
+        text-align: right;
+        margin-top: 5px;
     }
 }
 </style>
 <div class="container-main-page">
     <div class="row justify-content-center">
-        <div class="main-page-img-card-container row">
+        <div class="main-page-img-card-container">
             <p class="main-page-title-text-right">
                 В поисках корней нашего прошлого
             </p>
@@ -381,7 +370,7 @@
             </div>
             <div class="main-page-ellipse">
                 <span class="ellipse-text">
-                    <a href="https://t.me/By_Alexandrow" class="tg-link">by ALEXANDROW</a>
+                    <a href="https://t.me/By_Alexandrow" target="_blank" class="tg-link">by ALEXANDROW</a>
                 </span>
             </div>
         </div>

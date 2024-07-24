@@ -60,6 +60,8 @@ class Articles(models.Model):
     article_img_1 = models.ImageField(
         upload_to='image/articles_img/',
         verbose_name='Картинка 1',
+        blank=True,
+        null=True,
     )
     articles_text_2 = HTMLField(
         default=(
@@ -76,6 +78,8 @@ class Articles(models.Model):
     article_img_2 = models.ImageField(
         upload_to='image/articles_img/',
         verbose_name='Картинка 2',
+        blank=True,
+        null=True,
     )
     articles_text_4 = HTMLField(
         default=(
@@ -92,6 +96,8 @@ class Articles(models.Model):
     article_img_3 = models.ImageField(
         upload_to='image/articles_img/',
         verbose_name='Картинка 3',
+        blank=True,
+        null=True,
     )
     category = models.ForeignKey(
         ArticlesCategories,
@@ -126,13 +132,15 @@ class Articles(models.Model):
 class ArticlesImage(models.Model):
     about_us = models.ForeignKey(
         Articles,
-        related_name='images',
+        related_name='image',
         on_delete=models.CASCADE,
         verbose_name='Статья',
     )
     images = models.ImageField(
-        upload_to='images/articles_img/',
-        verbose_name='Карусель картинок'
+        upload_to='image/articles_carousel/',
+        verbose_name='Карусель картинок',
+        blank=True,
+        null=True,
     )
 
     class Meta:

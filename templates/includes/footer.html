@@ -39,6 +39,9 @@ footer {
     text-decoration: solid;
 }
 @media (max-width: 768px) {
+    .title-logo-footer {
+        font-size: 25px;
+    }
     .nav-ex-footer .footer-container {
         display: flex;
         flex-direction: column;
@@ -89,7 +92,7 @@ footer {
         <div class="container footer-container">
             <a class="navbar-brand-footer" href="{% url 'homepage:index' %}">
                 <img src="{% static 'img/logo.svg' %}" alt="Mystery Of Story" class="logo">
-                <span>Mystery Of Story</span>
+                <span class="title-logo-footer">Mystery Of Story</span>
             </a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="foot-nav navbar-nav mx-auto">

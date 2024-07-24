@@ -79,24 +79,24 @@ header {
         flex-direction: row;
         justify-content: center;
     }
-    .navbar-brand-header {
-        font-size: 15px;
-    }
     .navbar-brand-header:hover {
         color: white;
     }
     .header-logo {
         margin-right: 10px;
-        width: 30px;
-        height: 42px;
+        width: 40px;
+        height: 52px;
+    }
+    .title-logo-header {
+        font-size: 25px;
     }
     .head-nav, .header-donation {
         display: none;
     }
     .toggle-menu-icon {
         display: block;
-        width: 20px;
-        height: 17px;
+        width: 30px;
+        height: 27px;
         position: absolute;
         top: 50%;
         right: 10px;
@@ -150,7 +150,7 @@ header {
         <div class="container header-container">
             <a class="navbar-brand-header" href="{% url 'homepage:index' %}">
                 <img src="{% static 'img/logo.svg' %}" alt="Mystery Of Story" class="header-logo">
-                <span>Mystery Of Story</span>
+                <span class="title-logo-header">Mystery Of Story</span>
             </a>
             <img src="{% static 'img/hamburger.svg' %}" alt="Toggle-Menu" class="toggle-menu-icon">
             <div class="menu-links">
