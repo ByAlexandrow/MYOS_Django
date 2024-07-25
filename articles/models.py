@@ -93,12 +93,6 @@ class Articles(models.Model):
         ),
         verbose_name='Текст статьи 5 (left)',
     )
-    article_img_3 = models.ImageField(
-        upload_to='image/articles_img/',
-        verbose_name='Картинка 3',
-        blank=True,
-        null=True,
-    )
     category = models.ForeignKey(
         ArticlesCategories,
         on_delete=models.CASCADE,
@@ -132,7 +126,7 @@ class Articles(models.Model):
 class ArticlesImage(models.Model):
     about_us = models.ForeignKey(
         Articles,
-        related_name='image',
+        related_name='images',
         on_delete=models.CASCADE,
         verbose_name='Статья',
     )

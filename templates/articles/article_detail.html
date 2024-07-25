@@ -99,17 +99,53 @@
 .carousel-item.active {
     opacity: 1;
 }
+.one-article-image-carousel {
+    width: 650px;
+    height: 350px;
+    border-radius: 40px;
+    object-fit: cover;
+    filter: brightness(80%);
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+/* .artilce-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.one-article-image-carousel {
+    max-width: 100%;
+    margin: 0 auto;
+} */
 @media (max-width: 768px) {
     .artcile-way {
         display: none;
     }
-    .article-text {
-        flex: 0 0 100%;
-        max-width: 100%;
+    .title-article-img, .article-detail {
+        flex-direction: column;
     }
-    .article-images {
-        flex: 0 0 100%;
-        max-width: 100%;
+    .article-title-img {
+        order: 2;
+        width: 375px;
+        height: 375px;
+        border-radius: 50%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .article-title-name {
+        order: 1;
+        font-size: 40px;
+        text-align: center;
+    }
+    .one-article-image {
+        width: 380px;
+        height: 225px;
+        border-radius: 30px;
+    }
+    .one-article-image-carousel {
+        width: 380px;
+        height: 225px;
+        border-radius: 30px;
     }
 }
 </style>
@@ -184,14 +220,9 @@
                         <p class="text-of-article">{{ article.articles_text_5|safe }}</p>
                     </div>
                 {% endif %}
-                {% if article.article_img_3 %}
-                    <div class="col-6 article-images">
-                        <img src="{{ article.article_img_3.url }}" class="one-article-image" alt="Article Image">
-                    </div>
-                {% endif %}
                 {% if article.images.all %}
-                    <div class="row justify-content-center">
-                        <div id="articleImagesCarousel" class="carousel slide one-article-image" data-ride="carousel" data-interval="5000">
+                    <div class="col-6 article-carousel justify-content-center">
+                        <div id="articleImagesCarousel" class="carousel slide one-article-image-carousel" data-ride="carousel" data-interval="5000">
                             <ol class="carousel-indicators">
                                 {% for image in article.images.all %}
                                     <li data-target="#articleImagesCarousel" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
@@ -200,7 +231,7 @@
                             <div class="carousel-inner">
                                 {% for image in article.images.all %}
                                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                        <img src="{{ image.images.url }}" class="d-block w-100 one-article-image" alt="Article Image">
+                                        <img src="{{ image.images.url }}" class="d-block w-100 one-article-image-carousel" alt="Article Image">
                                     </div>
                                 {% endfor %}
                             </div>
