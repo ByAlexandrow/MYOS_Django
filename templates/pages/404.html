@@ -38,16 +38,22 @@
     font-weight: 600;
     font-style: semibold;
 }
+@media (max-width: 768px) {
+    .myos-fixs-bugs-img {
+        width: 70%;
+        height: auto;
+    }
+}
 </style>
 <div class="container-error-404">
     <p class="error-404-title">Страница не найдена</p>
     <p class="error-404-description">Возможно, она была временно удалена или перемещена!</p>
-    <img src="{% static 'img/little_myos.png' %}" class="myos-fixs-bugs-img">
+    <img src="/static/img/little_myos.png" class="myos-fixs-bugs-img">
     <p class="error-500-description">Разбираемся и исправляем</p>
     <div class="row btn-back">
         <a class="btn-back-link" href="javascript:history.back()">
             <p class="btn-back-word">
-                <img class="img-btn-back" src="{% static 'img/button-back.svg' %}">Назад
+                <img class="img-btn-back" src="/static/img/button-back.svg">Назад
             </p>
         </a>
     </div>

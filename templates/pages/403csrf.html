@@ -37,16 +37,22 @@
     font-weight: 600;
     font-style: semibold;
 }
+@media (max-width: 768px) {
+    .myos-fixs-bugs-img {
+        width: 70%;
+        height: auto;
+    }
+}
 </style>
 <div class="contianer-error-403">
     <p class="error-403-title">403</p>
     <p class="error-403-description">Вам отказано в праве доступа</p>
-    <img src="{% static 'img/little_myos.png' %}" class="myos-fixs-bugs-img">
+    <img src="/static/img/little_myos.png" class="myos-fixs-bugs-img">
     <p class="error-403-description">Уходите, я Вас на звал!</p>
     <div class="row btn-back">
         <a class="btn-back-link" href="javascript:history.back()">
             <p class="btn-back-word">
-                <img class="img-btn-back" src="{% static 'img/button-back.svg' %}">Назад
+                <img class="img-btn-back" src="/static/img/button-back.svg">Назад
             </p>
         </a>
     </div>

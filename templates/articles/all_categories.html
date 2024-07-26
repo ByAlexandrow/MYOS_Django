@@ -202,7 +202,7 @@
                         </nav>
                     {% endfor %}
                 </nav>
-                <img class="border-line" src="{% static 'img/border-line.svg' %}">
+                <img class="border-line" src="/static/img/border-line.svg">
             </div>
             <div class="col-9">
                 <div class="row all-articles-in-main-category">
@@ -212,7 +212,7 @@
                                 <div class="one-article-image-container">
                                     <img class="one-article-img" src="{{ article.articles_title_img.url }}">
                                     <a class="one-article-link" href="{% url 'articles:article_detail' article.id %}">
-                                        <img src="{% static 'img/category-link.svg' %}">
+                                        <img src="/static/img/category-link.svg">
                                     </a>
                                 </div>
                                 <div class="one-article-details">
@@ -256,7 +256,7 @@
                 </ul>
             </nav>
         {% endif %}
-        <img src="{% static 'img/line49.png' %}" class="main-page-img-line" style="margin-top: 20px;">
+        <img src="/static/img/line49.png" class="main-page-img-line" style="margin-top: 20px;">
     </div>
 </div>
 {% endblock %}

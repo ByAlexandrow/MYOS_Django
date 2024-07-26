@@ -149,10 +149,10 @@ header {
     <nav class="navbar navbar-expand nav-ex-header">
         <div class="container header-container">
             <a class="navbar-brand-header" href="{% url 'homepage:index' %}">
-                <img src="{% static 'img/logo.svg' %}" alt="Mystery Of Story" class="header-logo">
+                <img src="/static/img/logo.svg" alt="Mystery Of Story" class="header-logo">
                 <span class="title-logo-header">Mystery Of Story</span>
             </a>
-            <img src="{% static 'img/hamburger.svg' %}" alt="Toggle-Menu" class="toggle-menu-icon">
+            <img src="/static/img/hamburger.svg" alt="Toggle-Menu" class="toggle-menu-icon">
             <div class="menu-links">
                 <ul>
                     <li class="header-nav-item">
@@ -187,7 +187,7 @@ header {
                     <li class="header-nav-item">
                         <a class="nav-link {% if view_name == 'articles:all_categories' %}active{% endif %}" href="{% url 'articles:all_categories' 1 %}">
                             Категории
-                            <img src="{% static 'img/vector.svg' %}" class="header-category-vector">
+                            <img src="/static/img/vector.svg" class="header-category-vector">
                         </a>
                     </li>
                     <li class="header-nav-item">
