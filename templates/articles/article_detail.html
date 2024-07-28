@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load static %}
 {% block title %}Mystery Of Story - {{ article.articles_title }}{% endblock %}
 {% block content %}
 <style>
@@ -108,16 +107,16 @@
     margin-bottom: 20px;
     margin-top: 10px;
 }
-/* .artilce-carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.one-article-image-carousel {
-    max-width: 100%;
-    margin: 0 auto;
-} */
 @media (max-width: 768px) {
+    .article-text {
+        width: 100%;
+    }
+    .col-6 {
+        width: 100%;
+    }
+    .article-detail {
+        display: block;
+    }
     .artcile-way {
         display: none;
     }
@@ -155,21 +154,21 @@
             <div class="to-the-main-page">
                 <a class="article-way-link" href="{% url 'homepage:index' %}">
                     <p class="article-way-title">Главная
-                        <img class="arrow" src="{% static 'img/arrow.svg' %}">
+                        <img class="arrow" src="/static/img/arrow.svg">
                     </p>
                 </a>
             </div>
             <div class="to-the-category-page">
                 <a class="article-way-link" href="{% url 'articles:all_categories' 1 %}">
                     <p class="article-way-title">Категории
-                        <img class="arrow" src="{% static 'img/arrow.svg' %}">
+                        <img class="arrow" src="/static/img/arrow.svg">
                     </p>
                 </a>
             </div>
             <div class="to-the-main-category-page">
                 <a class="article-way-link" href="{% url 'articles:all_categories' article.category.id %}">
                     <p class="article-way-title">{{ article.category }}
-                        <img class="arrow" src="{% static 'img/arrow.svg' %}">
+                        <img class="arrow" src="/static/img/arrow.svg/">
                     </p>
                 </a>
             </div>
@@ -223,11 +222,6 @@
                 {% if article.images.all %}
                     <div class="col-6 article-images justify-content-center">
                         <div id="articleImagesCarousel" class="carousel slide one-article-image" data-ride="carousel" data-interval="5000">
-                            <ol class="carousel-indicators">
-                                {% for image in article.images.all %}
-                                    <li data-target="#articleImagesCarousel" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
-                                {% endfor %}
-                            </ol>
                             <div class="carousel-inner">
                                 {% for image in article.images.all %}
                                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
@@ -253,7 +247,7 @@
                 </p>
             </a>
         </div>
-        <img src="{% static 'img/line49.png' %}" class="main-page-img-line" style="margin-bottom: 20px;">
+        <img src="/static/img/line49.png" class="main-page-img-line" style="margin-bottom: 20px;">
     </div>
 </div>
 {% endblock %}

@@ -56,6 +56,8 @@ class Articles(models.Model):
             f'Текст статьи. 1 отступ. 100-130 слов. Шрифт: заголовки - 18, подзаголовки - 14, текст - 12, белый цвет.'
         ),
         verbose_name='Текст статьи 1 (left)',
+        blank=True,
+        null=True,
     )
     article_img_1 = models.ImageField(
         upload_to='image/articles_img/',
@@ -68,12 +70,16 @@ class Articles(models.Model):
             f'Текст статьи. 1 отступ. Строка. Шрифт: заголовки - 18, подзаголовки - 14, текст - 12, белый цвет.'
         ),
         verbose_name='Текст статьи 2 (string)',
+        blank=True,
+        null=True,
     )
     articles_text_3 = HTMLField(
         default=(
             f'Текст статьи. 1 отступ. 100-130 слов. Шрифт: заголовки - 18, подзаголовки - 14, текст - 12, белый цвет.'
         ),
         verbose_name='Текст статьи 3 (right)',
+        blank=True,
+        null=True,
     )
     article_img_2 = models.ImageField(
         upload_to='image/articles_img/',
@@ -86,12 +92,16 @@ class Articles(models.Model):
             f'Текст статьи. 1 отступ. Строка. Шрифт: заголовки - 18, подзаголовки - 14, текст - 12, белый цвет.'
         ),
         verbose_name='Текст статьи 4 (string)',
+        blank=True,
+        null=True,
     )
     articles_text_5 = HTMLField(
         default=(
             f'Текст статьи. 1 отступ. 100-130 слов. Шрифт: заголовки - 18, подзаголовки - 14, текст - 12, белый цвет.'
         ),
         verbose_name='Текст статьи 5 (left)',
+        blank=True,
+        null=True,
     )
     category = models.ForeignKey(
         ArticlesCategories,

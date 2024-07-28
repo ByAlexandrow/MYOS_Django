@@ -1,6 +1,0 @@
-venv
-.git
-.github
-.idea
-.vscode
-db.sqlite3
