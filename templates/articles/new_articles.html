@@ -118,6 +118,13 @@
         transform: translateX(-15px) translateY(-15px);
     }
 }
+@media (max-width: 1024px) {
+    .all-new-articles-item {
+        flex: 1 1 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
 </style>
 <div class="container-new-articles">
     <div class="row justify-content-center">
@@ -127,7 +134,7 @@
             </div>
             <div class="all-new-articles-on-main-page">
                 {% for new_article in news %}
-                    <div class="row col-md-4 all-new-articles-item">
+                    <div class="col-4 all-new-articles-item">
                         <div class="new-article">
                             <div class="new-article-image-container">
                                 <img class="new-article-img" src="{{ new_article.articles_title_img.url }}">

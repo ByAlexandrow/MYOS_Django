@@ -378,7 +378,7 @@
     .container-category {
         text-align: center;
     }
-    .read-articles {
+    .btn.read-articles {
         width: 355px;
         height: 76px;
         border-radius: 73px;
@@ -395,6 +395,24 @@
         width: 100%;
         text-align: right;
         margin-top: 5px;
+    }
+}
+@media (max-width: 1024px) {
+    .all-new-articles-item {
+        flex: 1 1 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .main-page-img-card {
+        border-radius: 30px;
+        width: 1260px;
+        height: 314px;
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 20px;
+        padding: 5px;
+        object-fit: cover;
+        filter: brightness(85%);
     }
 }
 </style>
@@ -505,7 +523,7 @@
             </div>
             <div class="all-new-articles-on-main-page">
                 {% for new_article in new_articles %}
-                    <div class="row col-md-4 all-new-articles-item">
+                    <div class="col-4 all-new-articles-item">
                         <div class="new-article">
                             <div class="new-article-image-container">
                                 <img class="new-article-img" src="{{ new_article.articles_title_img.url }}">
