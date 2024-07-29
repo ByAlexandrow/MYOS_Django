@@ -57,7 +57,6 @@ class Articles(models.Model):
         ),
         verbose_name='Текст статьи 1 (left)',
         blank=True,
-        null=True,
     )
     article_img_1 = models.ImageField(
         upload_to='image/articles_img/',
@@ -71,7 +70,6 @@ class Articles(models.Model):
         ),
         verbose_name='Текст статьи 2 (string)',
         blank=True,
-        null=True,
     )
     articles_text_3 = HTMLField(
         default=(
@@ -79,7 +77,6 @@ class Articles(models.Model):
         ),
         verbose_name='Текст статьи 3 (right)',
         blank=True,
-        null=True,
     )
     article_img_2 = models.ImageField(
         upload_to='image/articles_img/',
@@ -93,7 +90,6 @@ class Articles(models.Model):
         ),
         verbose_name='Текст статьи 4 (string)',
         blank=True,
-        null=True,
     )
     articles_text_5 = HTMLField(
         default=(
@@ -101,7 +97,6 @@ class Articles(models.Model):
         ),
         verbose_name='Текст статьи 5 (left)',
         blank=True,
-        null=True,
     )
     category = models.ForeignKey(
         ArticlesCategories,

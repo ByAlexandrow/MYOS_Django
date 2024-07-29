@@ -23,7 +23,7 @@ class ArticlesAdmin(admin.ModelAdmin):
 @admin.register(ArticlesCategories)
 class ArticlesCategoriesAdmin(admin.ModelAdmin):
     list_display = (
-        'articles_category_title', 'articles_category_img',
+        'articles_category_title', 'articles_category_description',
         'created_at', 'is_published'
     )
     list_display_links = ('articles_category_title',)
