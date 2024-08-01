@@ -59,7 +59,7 @@ class Articles(models.Model):
         blank=True,
     )
     article_img_1 = models.ImageField(
-        upload_to='image/articles_img/',
+        upload_to='image/articles_description_img/',
         verbose_name='Картинка 1',
         blank=True,
         null=True,
@@ -79,7 +79,7 @@ class Articles(models.Model):
         blank=True,
     )
     article_img_2 = models.ImageField(
-        upload_to='image/articles_img/',
+        upload_to='image/articles_description_img/',
         verbose_name='Картинка 2',
         blank=True,
         null=True,

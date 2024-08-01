@@ -173,11 +173,6 @@
     .all-articles-in-main-category {
         display: block;
     }
-    .all-categories-img-card {
-        width: 455px;
-        height: 250px;
-        border-radius: 30px;
-    }
     .all-categories-img-card-container {
         text-align: center;
     }
@@ -195,9 +190,9 @@
 </style>
 <div class="container-all-categories-page">
     <div class="row justify-content-center">
-        <div class="all-categories-img-card-container row">
-            <p class="main-page-title" style="margin-bottom: 10px;">{{ category.articles_category_title }}</p>
-            <img src="{{ category.articles_category_img.url }}" class="all-categories-img-card">
+        <div class="all-categories-img-card-container">
+            <p class="row main-page-title" style="margin-bottom: 10px;">{{ category.articles_category_title }}</p>
+            <img src="{{ category.articles_category_img.url }}" class="all-categories-img-card img-fluid">
         </div>
         <div class="row all-articles">
             <div class="col-3 all-categories-with-articles">
