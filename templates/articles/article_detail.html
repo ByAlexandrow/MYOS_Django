@@ -192,7 +192,7 @@
                 {% endif %}
                 {% if article.article_img_1 %}
                     <div class="col-6 article-images">
-                        <img src="{{ article.article_img_1.url }}" class="one-article-image" alt="Article Image">
+                        <img src="{{ article.article_img_1.url }}" class="one-article-image img-fluid" alt="Article Image">
                     </div>
                 {% endif %}
                 {% if article.articles_text_2 %}
@@ -202,7 +202,7 @@
                 {% endif %}
                 {% if article.article_img_2 %}
                     <div class="col-6 article-images">
-                        <img src="{{ article.article_img_2.url }}" class="one-article-image" alt="Article Image">
+                        <img src="{{ article.article_img_2.url }}" class="one-article-image img-fluid" alt="Article Image">
                     </div>
                 {% endif %}
                 {% if article.articles_text_3 %}
@@ -222,11 +222,11 @@
                 {% endif %}
                 {% if article.images.all %}
                     <div class="col-6 article-images justify-content-center">
-                        <div id="articleImagesCarousel" class="carousel slide one-article-image" data-ride="carousel" data-interval="5000">
+                        <div id="articleImagesCarousel" class="carousel slide one-article-image img-fluid" data-ride="carousel" data-interval="5000">
                             <div class="carousel-inner">
                                 {% for image in article.images.all %}
                                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                        <img src="{{ image.images.url }}" class="d-block w-100 one-article-image" alt="Article Image">
+                                        <img src="{{ image.images.url }}" class="d-block w-100 one-article-image img-fluid" alt="Article Image">
                                     </div>
                                 {% endfor %}
                             </div>

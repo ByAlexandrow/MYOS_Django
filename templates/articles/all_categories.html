@@ -130,6 +130,7 @@
     font-style: semibold;
     color: #AEAEAE;
     font-size: 13px;
+    margin-bottom: 20px;
 }
 .page-link {
     color: white;
@@ -148,14 +149,14 @@
 }
 @media (max-width: 768px) {
     .one-article-img {
-        width: 360px;
-        height: 350px;
+        width: 310px;
+        height: 300px;
     }
     .one-article-link {
-        top: 80%;
-        left: 80%;
-        width: 45px;
-        height: 45px;
+        top: 76%;
+        left: 76%;
+        width: 40px;
+        height: 40px;
     }
     .one-article-title {
         font-size: 22px;
@@ -191,7 +192,7 @@
 <div class="container-all-categories-page">
     <div class="row justify-content-center">
         <div class="all-categories-img-card-container">
-            <p class="row main-page-title" style="margin-bottom: 10px;">{{ category.articles_category_title }}</p>
+            <p class="all-category-page-title" style="margin-bottom: 10px;">{{ category.articles_category_title }}</p>
             <img src="{{ category.articles_category_img.url }}" class="all-categories-img-card img-fluid">
         </div>
         <div class="row all-articles">
