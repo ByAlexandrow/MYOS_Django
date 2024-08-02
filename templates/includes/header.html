@@ -8,7 +8,7 @@ header {
     z-index: 1000;
 }
 .head-nav {
-    padding-right: 325px;
+    padding-right: 275px;
 }
 .nav-link {
     color: white;
@@ -53,7 +53,7 @@ header {
     font-family: "Unbounded";
     font-weight: 500;
     font-style: normal;
-    background-color: #3030A6;
+    background-color: rgba(0, 0, 0, 0);
     border-radius: 22px;
     border-color: #4C956C;
     width: 248px;
@@ -128,7 +128,7 @@ header {
         font-family: "Unbounded";
         font-weight: 500;
         font-style: medium;
-        background-color: #3030A6;
+        background-color: rgba(0, 0, 0, 0);
         border-radius: 22px;
         border-color: #4C956C;
         width: 299px;
@@ -145,7 +145,7 @@ header {
     }
 }
 </style>
-<header class="header">
+<header class="header" id="header">
     <nav class="navbar navbar-expand nav-ex-header">
         <div class="container header-container">
             <a class="navbar-brand-header" href="{% url 'homepage:index' %}">
@@ -197,6 +197,11 @@ header {
                     </li>
                 </ul>
             </div>
+            <div class="header-dark-mode">
+                <a id="changeColorButton">
+                    <img src="/static/img/dark-mode.png" style="margin-right: 50px; width: 40px; height: 40px;">
+                </a>
+            </div>
             <div class="header-donation">
                 <a href="https://boosty.to/by_alexandrow/donate" target="_blank">
                     <button type="button" class="btn header-donation">Поддержать</button>
@@ -238,5 +243,13 @@ header {
                 menuLinks.style.display = 'block';
             }
         });
+    });
+</script>
+<script>
+    document.getElementById('changeColorButton').addEventListener('click', function() {
+        const blackColor = '#000000';
+        document.body.style.backgroundColor = blackColor;
+        document.getElementById('header').style.backgroundColor = blackColor;
+        document.getElementById('footer').style.backgroundColor = blackColor;
     });
 </script>
