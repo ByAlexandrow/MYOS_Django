@@ -40,6 +40,7 @@
         position: relative;
         width: 800px;
         height: 650px;
+        margin-bottom: -130px;
     }
     .angel-page-img-card {
         border-radius: 30px;
@@ -51,6 +52,29 @@
         bottom: 20px;
         right: 20px;
         z-index: 10;
+    }
+    .tooltip {
+        visibility: hidden;
+        background-color: rgba(0, 0, 0, 0);
+        color: white;
+        text-align: center;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: -125px;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        white-space: nowrap;
+        font-family: "Comfortaa";
+        font-weight: 600;
+        font-style: SemiBold;
+        font-size: 15px;
+    }
+    .overlay-angel-icon:hover .tooltip {
+         visibility: visible;
+        opacity: 1;
     }
     .carousel-description {
         position: absolute;
@@ -73,22 +97,18 @@
     }
     .card {
         border-radius: 30px;
-        position: absolute;
+        border-color: white;
+        background-color: rgba(0, 0, 0, 0);
+        width: 260px;
+        height: 436px;
         font-family: "Comfortaa";
         font-weight: 600;
         font-style: SemiBold;
         font-size: 15px;
         color: white;
-        background-color: rgba(0, 0, 0, 0);
     }
-    .card-body {
-        margin-left: 10px;
-        border-color: white;
-    }
-    #accordion .card {
-        border-color: white;
-        width: 775px;
-        height: 450px;
+    .text-card {
+        margin-top: 30px;
     }
 </style>
 <div class="container-cute-angel">
@@ -97,53 +117,77 @@
             <p class="under-text">Останься в моей жизни навсегда</p>
             <p class="sub-text">Ангел мой</p>
         </div>
-        <div id="accordion" class="row justify-content-center">
+        <div class="row justify-content-center">
             {% for cutty in angel %}
-                <div class="angel-carousel">
-                    <div class="carousel-title">
-                        <h4>{{ cutty.title_day }}</h4>
-                    </div>
-                    <div id="angelPageCarousel_{{ cutty.id }}" class="carousel slide angel-page-img-card" data-ride="carousel" data-interval="5000">
-                        <div class="carousel-inner">
-                            {% for image in cutty.img.all %}
-                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                    <img src="{{ image.images.url }}" class="d-block w-100 angel-page-img-card" alt="Article Image">
-                                    <div class="carousel-description">
-                                        <p>{{ cutty.period }}</p>
-                                    </div>
-                                    <div class="overlay-angel-icon" data-toggle="collapse" data-target="#accordion_{{ cutty.id }}" aria-expanded="false" aria-controls="accordion_{{ cutty.id }}">
-                                        <img src="/static/img/arrow_new_articles.svg">
-                                    </div>
-                                </div>      
-                            {% endfor %}
+                {% if forloop.counter0|divisibleby:2 %}
+                    <div class="row one-cute-card" style="display: flex; justify-content: flex-start;">
+                        <div class="row card">
+                            <p class="text-card">{{ cutty.day_description|safe }}</p>
                         </div>
-                        <a class="carousel-control-prev" href="#angelPageCarousel_{{ cutty.id }}" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        </a>
-                        <a class="carousel-control-next" href="#angelPageCarousel_{{ cutty.id }}" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                    <div id="accordion_{{ cutty.id }}" class="collapse" aria-labelledby="heading_{{ cutty.id }}" data-parent="#accordion">
-                        <div class="card">
-                            <div class="card-body">
-                                <p>{{ cutty.day_description|safe }}</p>
+                        <div class="angel-carousel">
+                            <div class="carousel-title">
+                                <h4>{{ cutty.title_day }}</h4>
+                            </div>
+                            <div id="angelPageCarousel_{{ cutty.id }}" class="carousel slide angel-page-img-card" data-ride="carousel" data-interval="5000">
+                                <div class="carousel-inner">
+                                    {% for image in cutty.img.all %}
+                                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                            <img src="{{ image.images.url }}" class="d-block w-100 angel-page-img-card" alt="Article Image">
+                                            <div class="carousel-description">
+                                                <p>{{ cutty.period }}</p>
+                                            </div>
+                                            <div class="overlay-angel-icon">
+                                                <img src="/static/img/arrow_new_articles.svg">
+                                                <div class="tooltip">Люблю тебя</div>
+                                            </div>
+                                        </div>      
+                                    {% endfor %}
+                                </div>
+                                <a class="carousel-control-prev" href="#angelPageCarousel_{{ cutty.id }}" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                </a>
+                                <a class="carousel-control-next" href="#angelPageCarousel_{{ cutty.id }}" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
+                {% else %}
+                    <div class="row one-cute-card" style="display: flex; justify-content: flex-end;">
+                        <div class="angel-carousel">
+                            <div class="carousel-title">
+                                <h4>{{ cutty.title_day }}</h4>
+                            </div>
+                            <div id="angelPageCarousel_{{ cutty.id }}" class="carousel slide angel-page-img-card" data-ride="carousel" data-interval="5000">
+                                <div class="carousel-inner">
+                                    {% for image in cutty.img.all %}
+                                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                            <img src="{{ image.images.url }}" class="d-block w-100 angel-page-img-card" alt="Article Image">
+                                            <div class="carousel-description">
+                                                <p>{{ cutty.period }}</p>
+                                            </div>
+                                            <div class="overlay-angel-icon">
+                                                <img src="/static/img/arrow_new_articles.svg">
+                                                <div class="tooltip">Люблю тебя</div>
+                                            </div>
+                                        </div>      
+                                    {% endfor %}
+                                </div>
+                                <a class="carousel-control-prev" href="#angelPageCarousel_{{ cutty.id }}" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                </a>
+                                <a class="carousel-control-next" href="#angelPageCarousel_{{ cutty.id }}" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row card">
+                            <p class="text-card">{{ cutty.day_description|safe }}</p>
+                        </div>
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('.overlay-angel-icon').click(function() {
-            console.log('Icon clicked');
-            var target = $(this).data('target');
-            console.log('Target:', target);
-            $(target).collapse('toggle');
-        });
-    });
-</script>
 {% endblock %}

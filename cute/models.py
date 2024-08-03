@@ -1,6 +1,7 @@
 from django.db import models
 
 from tinymce.models import HTMLField
+from PIL import Image, ImageOps
 
 
 class MyCuteAngel(models.Model):
@@ -59,3 +60,12 @@ class AngelsImage(models.Model):
 
     def __str__(self):
         return f'{self.images.name}'
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.images:
+            img = Image.open(self.images.path)
+            target_width = 800
+            target_height = int(target_width * 9 / 16)
+            img = ImageOps.fit(img, (target_width, target_height), Image.Resampling.LANCZOS)
+            img.save(self.images.path)
