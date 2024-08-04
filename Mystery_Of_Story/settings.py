@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.yandex',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,6 +75,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Mystery_Of_Story.urls'
 
+LOGIN_REDIRECT_URL = '/'
+
 TEMPLATES_DIR = BASE_DIR / 'templates'
 
 TEMPLATES = [
@@ -87,17 +90,25 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+        'APP': {
+            'client_id': 'Ov23liRYtkps0rOc1a9n',
+            'secret': 'b6d46b4bd13e1e055aa7b26ea57e6113f5ff401a',
+            'key': ''
+        }
+    },
     'yandex': {
-        'AAP': {
-            'client_id': os.getenv('CLIENT_ID'),
-            'secret': os.getenv('SECRET'),
-            'key': os.getenv('KEY')
+        'APP': {
+            'client_id': '123',
+            'secret': '456',
+            'key': ''
         }
     }
 }

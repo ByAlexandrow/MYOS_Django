@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <style>
 header {
     background-color: #3030A6;
@@ -8,7 +9,7 @@ header {
     z-index: 1000;
 }
 .head-nav {
-    padding-right: 275px;
+    padding-right: 180px;
 }
 .nav-link {
     color: white;
@@ -69,6 +70,30 @@ header {
 }
 .menu-links {
     display: none;
+}
+.login-btn {
+    background-color: #3030A6;
+    border-color: #4C956C;
+    border-radius: 30px;
+    color: white;
+}
+.login-btn:hover {
+    background-color: #3030A6;
+    border-color: #4C956C;
+    border-radius: 30px;
+    color: white;
+}
+.btn-group-link {
+    font-family: "Comfortaa";
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+}
+.btn-group-link:hover {
+    color: white;
+    text-decoration: none;
 }
 @media (max-width: 768px) {
     .header-container {
@@ -197,11 +222,25 @@ header {
                     </li>
                 </ul>
             </div>
-            <div class="header-dark-mode">
-                <a id="changeColorButton">
-                    <img src="/static/img/dark-mode.png" style="margin-right: 50px; width: 40px; height: 40px;">
-                </a>
-            </div>
+            {% if request.user.is_authenticated %}
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn login-btn">
+                        <a class="btn-group-link" href="{% url 'account_logout' %}">{{ user.username }}</a>
+                    </button>
+                    <button type="button" class="btn login-btn">
+                        <a class="btn-group-link" href="{% url 'account_logout' %}">Выйти</a>
+                    </button>
+                </div>
+            {% else %}    
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn login-btn">
+                        <a class="btn-group-link" href="{% provider_login_url 'github' %}">GitHub</a>
+                    </button>
+                    <button type="button" class="btn login-btn">
+                        <a class="btn-group-link" href="...">Yandex</a>
+                    </button>
+                </div>
+            {% endif %}
             <div class="header-donation">
                 <a href="https://boosty.to/by_alexandrow/donate" target="_blank">
                     <button type="button" class="btn header-donation">Поддержать</button>
@@ -243,13 +282,5 @@ header {
                 menuLinks.style.display = 'block';
             }
         });
-    });
-</script>
-<script>
-    document.getElementById('changeColorButton').addEventListener('click', function() {
-        const blackColor = '#000000';
-        document.body.style.backgroundColor = blackColor;
-        document.getElementById('header').style.backgroundColor = blackColor;
-        document.getElementById('footer').style.backgroundColor = blackColor;
     });
 </script>
