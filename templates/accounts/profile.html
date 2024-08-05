@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block title %}Mystery Of Story - {{ user.username }}{% endblock %}
+{% block content %}
+<style>
+    .profile-username-text {
+        text-align: center;
+        color: white;
+        font-family: "Unbounded";
+        font-weight: 700;
+        font-style: bold;
+        font-size: 44px;
+    }
+    .profile-img {
+        object-fit: cover;
+        width: 275px;
+        height: 275px;
+        border-radius: 50%;
+    }
+    .category-links {
+        text-align: center;
+        justify-content: end;
+    }
+    .list-group-item {
+        background-color: #3030A6;
+        color: white;
+        border-color: #4C956C;
+        font-family: "Comfortaa";
+        font-weight: 600;
+        font-style: semibold;
+        font-size: 16px;
+    }
+    .list-group-item:hover {
+        background-color: #3030A6;
+        color: white;
+        border-color: #4C956C;
+    }
+    .title-category {
+        color: white;
+        font-family: "Unbounded";
+        font-weight: 700;
+        font-style: bold;
+        font-size: 18px;
+    }
+    .dif-info {
+        margin-top: 15px;
+    }
+    .list-group-horizontal {
+        justify-content: end;
+    }
+    .like {
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+    .random-articles {
+        margin-top: 30px;
+    }
+    .item {
+        color: white;
+        font-family: "Comfortaa";
+        font-weight: 600;
+        font-style: semibold;
+        font-size: 16px;
+        text-decoration: none;
+    }
+</style>
+<div class="row profile justify-content-center">
+    <div class="profile-username">
+        <p class="profile-username-text">{{ user.username }}</p>
+    </div>
+    <div class="row profile-info">
+        <div class="col-4">
+            <img class="profile-img" src="/static/img/prof-planet.jpg">
+        </div>
+        <div class="col-6">
+            <p><p>
+        </div>
+        <div class="col-2 category-links">
+            <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item title-category">Категории</a>
+                {% if categories %}
+                    {% for category in categories %}
+                        <a class="list-group-item" href="{% url 'articles:all_categories' category.id %}">{{ category.articles_category_title|first_word }}</a>
+                    {% endfor %}
+                {% else %}
+                    <a class="list-group-item">Нет доступа</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row dif-info">
+        <div class="dif-links">
+            <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
+                <a class="like" href="...">
+                    <img src="/static/img/heart.png" style="width: 40px; height: 40px; margin-left: 3px; margin-right: 3px;">
+                </a>
+                <a class="like" href="...">
+                    <img src="/static/img/comments.png" style="width: 40px; height: 40px; margin-left: 3px; margin-right: 3px;">
+                </a>
+                <a class="like" href="...">
+                    <img src="/static/img/bookmarks.png" style="width: 40px; height: 40px">
+                </a>
+                <a class="like" href="...">
+                    <img src="/static/img/paper.png" style="width: 40px; height: 40px; margin-right: 2px;">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row random-articles">
+        <div class="list-group list-group-horizontal d-flex justify-content-between">
+            {% for article in random_articles %}
+                <div class="item">
+                    <a class="item" href="{% url 'articles:article_detail' article.id %}">{{ article.articles_title }}</a>
+                </div>
+            {% endfor %}
+            {% for i in "1234"|make_list %}
+                {% if random_articles|length < forloop.counter %}
+                    <div class="item invisible"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <img src="{% static 'img/line49.png' %}" class="main-page-img-line" style="margin-top: 20px; margin-bottom: 60px;">
+    <img src="{% static 'img/line49.png' %}" class="main-page-img-line">
+</div>
+{% endblock %}

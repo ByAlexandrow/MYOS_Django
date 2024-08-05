@@ -225,19 +225,19 @@ header {
             {% if request.user.is_authenticated %}
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn login-btn">
-                        <a class="btn-group-link" href="{% url 'account_logout' %}">{{ user.username }}</a>
+                        <a class="btn-group-link" href="{% url 'accounts:profile' request.user.username %}">{{ request.user.username }}</a>
                     </button>
                     <button type="button" class="btn login-btn">
                         <a class="btn-group-link" href="{% url 'account_logout' %}">Выйти</a>
                     </button>
                 </div>
-            {% else %}    
+            {% else %}
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn login-btn">
                         <a class="btn-group-link" href="{% provider_login_url 'github' %}">GitHub</a>
                     </button>
                     <button type="button" class="btn login-btn">
-                        <a class="btn-group-link" href="...">Yandex</a>
+                        <a class="btn-group-link" href="{% provider_login_url 'yandex' %}">Yandex</a>
                     </button>
                 </div>
             {% endif %}

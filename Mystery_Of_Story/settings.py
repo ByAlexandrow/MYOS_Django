@@ -42,6 +42,7 @@ AUTHENTICATION_BACKENDS = (
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
     'cute.apps.CuteConfig',
     'pages.apps.PagesConfig',
     'articles.apps.ArticlesConfig',
@@ -99,15 +100,15 @@ TEMPLATES = [
 SOCIALACCOUNT_PROVIDERS = {
     'github': {
         'APP': {
-            'client_id': 'Ov23liRYtkps0rOc1a9n',
-            'secret': 'b6d46b4bd13e1e055aa7b26ea57e6113f5ff401a',
+            'client_id': 'Ov23li6m0ib32mrSURuH',
+            'secret': '3002fb10dc85208365bcb3e2ea7dd8a760a11f8e',
             'key': ''
         }
     },
     'yandex': {
         'APP': {
-            'client_id': '123',
-            'secret': '456',
+            'client_id': '872939fa4f3e4763ad6d69f316ca9f53',
+            'secret': '63f2c48c144f479095dea0975df812be',
             'key': ''
         }
     }
@@ -202,3 +203,5 @@ TINYMCE_DEFAULT_CONFIG = {
     'menubar': True,
     'statusbar': True,
 }
+
+CSRF_FAILURE_VIEW = 'pages.views.csrf_failure'
