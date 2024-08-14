@@ -12,6 +12,11 @@
         font-style: bold;
         font-size: 44px;
     }
+    .profile-img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .profile-img {
         object-fit: cover;
         width: 275px;
@@ -44,17 +49,17 @@
         font-size: 18px;
     }
     .dif-info {
-        margin-top: 15px;
+        margin-top: 20px;
     }
     .list-group-horizontal {
-        justify-content: end;
+        justify-content: center;
     }
     .like {
         margin-left: 2px;
         margin-right: 2px;
     }
     .random-articles {
-        margin-top: 30px;
+        margin-top: 35px;
     }
     .item {
         color: white;
@@ -64,45 +69,175 @@
         font-size: 16px;
         text-decoration: none;
     }
+    .like-container {
+        position: relative;
+        display: inline-block;
+    }
+    .like-image {
+        width: 40px;
+        height: 40px;
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+    .like-tooltip {
+        visibility: hidden;
+        width: 80px;
+        background-color: rgba(0, 0, 0, 0);
+        color: #fff;
+        text-align: center;
+        font-family: "Comfortaa";
+        font-weight: 600;
+        font-style: semibold;
+        font-size: 16px;
+        border-radius: 5px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 10%;
+        left: 10%;
+        margin-left: -108px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    .like-container:hover .like-tooltip {
+        visibility: visible;
+        opacity: 1;
+    }
+    .notes-container {
+        position: relative;
+        display: inline-block;
+    }
+    .notes-image {
+        width: 40px;
+        height: 40px;
+        margin-right: 2px;
+    }
+    .notes-tooltip {
+        visibility: hidden;
+        background-color: rgba(0, 0, 0, 0);
+        color: #fff;
+        font-family: "Comfortaa";
+        font-weight: 600;
+        font-style: semibold;
+        font-size: 16px;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 100%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        white-space: nowrap;
+    }
+    .notes-container:hover .notes-tooltip {
+        visibility: visible;
+        opacity: 1;
+    }
+    .support-container {
+        position: relative;
+        display: inline-block;
+    }
+    .support-image {
+        width: 40px;
+        height: 40px;
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+   .support-tooltip {
+        visibility: hidden;
+        background-color: rgba(0, 0, 0, 0);
+        color: #fff;
+        font-family: "Comfortaa";
+        font-weight: 600;
+        font-style: semibold;
+        font-size: 16px;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        white-space: nowrap;
+    }
+    .support-container:hover .support-tooltip {
+        visibility: visible;
+        opacity: 1;
+    }
+    .bookmarks-container {
+        position: relative;
+        display: inline-block;
+    }
+    .bookmarks-image {
+        width: 40px;
+        height: 40px;
+    }
+   .bookmarks-tooltip {
+        visibility: hidden;
+        background-color: rgba(0, 0, 0, 0);
+        color: #fff;
+        font-family: "Comfortaa";
+        font-weight: 600;
+        font-style: semibold;
+        font-size: 16px;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        white-space: nowrap;
+    }
+    .bookmarks-container:hover .bookmarks-tooltip {
+        visibility: visible;
+        opacity: 1;
+    }
 </style>
 <div class="row profile justify-content-center">
     <div class="profile-username">
         <p class="profile-username-text">{{ user.username }}</p>
     </div>
-    <div class="row profile-info">
-        <div class="col-4">
+    <div class="profile-info">
+        <div class="profile-img-container">
             <img class="profile-img" src="/static/img/prof-planet.jpg">
-        </div>
-        <div class="col-6">
-            <p><p>
-        </div>
-        <div class="col-2 category-links">
-            <div class="list-group" id="list-tab" role="tablist">
-                <a class="list-group-item title-category">Категории</a>
-                {% if categories %}
-                    {% for category in categories %}
-                        <a class="list-group-item" href="{% url 'articles:all_categories' category.id %}">{{ category.articles_category_title|first_word }}</a>
-                    {% endfor %}
-                {% else %}
-                    <a class="list-group-item">Нет доступа</a>
-                {% endif %}
-            </div>
         </div>
     </div>
     <div class="row dif-info">
         <div class="dif-links">
             <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
                 <a class="like" href="...">
-                    <img src="/static/img/heart.png" style="width: 40px; height: 40px; margin-left: 3px; margin-right: 3px;">
+                    <div class="like-container">
+                        <img src="/static/img/heart.png" class="like-image">
+                        <span class="like-tooltip">Избранное</span>
+                    </div>
                 </a>
                 <a class="like" href="...">
-                    <img src="/static/img/comments.png" style="width: 40px; height: 40px; margin-left: 3px; margin-right: 3px;">
+                    <div class="support-container">
+                        <img src="/static/img/comments.png" class="support-image">
+                        <span class="support-tooltip">Поддержка</span>
+                    </div>
                 </a>
                 <a class="like" href="...">
-                    <img src="/static/img/bookmarks.png" style="width: 40px; height: 40px">
+                    <div class="bookmarks-container">
+                        <img src="/static/img/bookmarks.png" class="bookmarks-image">
+                        <span class="bookmarks-tooltip">Закладки</span>
+                    </div>
                 </a>
                 <a class="like" href="...">
-                    <img src="/static/img/paper.png" style="width: 40px; height: 40px; margin-right: 2px;">
+                    <div class="notes-container">
+                        <img src="/static/img/paper.png" class="notes-image">
+                        <span class="notes-tooltip">Заметки</span>
+                    </div>
                 </a>
             </div>
         </div>
