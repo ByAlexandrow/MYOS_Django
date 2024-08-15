@@ -42,6 +42,7 @@ AUTHENTICATION_BACKENDS = (
 # Application definition
 
 INSTALLED_APPS = [
+    'achievements.apps.AchievementsConfig',
     'accounts.apps.AccountsConfig',
     'cute.apps.CuteConfig',
     'pages.apps.PagesConfig',
