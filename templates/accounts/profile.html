@@ -12,16 +12,46 @@
         font-style: bold;
         font-size: 44px;
     }
+    .profile-achievements {
+        text-align: center;
+        color: white;
+        font-family: "Unbounded";
+        font-weight: 700;
+        font-style: bold;
+        font-size: 28px;
+    }
     .profile-img-container {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .achievements-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .all-achievements-img {
+        display: flex;
+        gap: 10px;
     }
     .profile-img {
         object-fit: cover;
         width: 275px;
         height: 275px;
         border-radius: 50%;
+    }
+    .achieves-text {
+        color: #fff;
+        font-family: "Comfortaa";
+        font-weight: 600;
+        font-style: semibold;
+        font-size: 16px;
+    }
+    .achieves-img {
+        object-fit: cover;
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
     }
     .category-links {
         text-align: center;
@@ -210,6 +240,18 @@
     <div class="profile-info">
         <div class="profile-img-container">
             <img class="profile-img" src="/static/img/prof-planet.jpg">
+        </div>
+    </div>
+    <div class="achievements">
+        <p class="profile-achievements">Достижения</p>
+    </div>
+    <div class="achievements-img list-group-horizontal">
+        <div class="all-achievements-img">
+            {% if achievement.is_achieved %}
+                <img src="{{ achievement.image.url }}" alt="Achievement" class="achieves-img">
+            {% else %}
+                <p class="achieves-text">Достижений пока нет :(</p>
+            {% endif %}
         </div>
     </div>
     <div class="row dif-info">
