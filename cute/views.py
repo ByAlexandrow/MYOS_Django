@@ -5,7 +5,7 @@ from cute.models import MyCuteAngel
 
 
 def angel(request):
-    angel = MyCuteAngel.objects.all().order_by('-date')
+    angel = MyCuteAngel.objects.filter(is_published=True).order_by('-date')
     paginator = Paginator(angel, 15)
     page = request.GET.get('page')
     try:

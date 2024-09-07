@@ -5,9 +5,9 @@ from articles.models import Articles, ArticlesCategories
 
 
 def all_categories(request, id):
-    categories = ArticlesCategories.objects.all()
+    categories = ArticlesCategories.objects.filter(is_published=True)
     category = get_object_or_404(ArticlesCategories, pk=id)
-    articles = Articles.objects.filter(category=category)
+    articles = Articles.objects.filter(category=category, is_published=True)
     paginator = Paginator(articles, 12)
     page = request.GET.get('page')
     try:
@@ -21,7 +21,7 @@ def all_categories(request, id):
 
 
 def new_articles(request):
-    news = Articles.objects.all().order_by('-created_at')[:9]
+    news = Articles.objects.filter(is_published=True).order_by('-created_at')[:9]
     return render(request, 'articles/new_articles.html', {'news': news})
 
 
