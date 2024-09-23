@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% block tittle %}{{ article.subcategory.articles_subcategory_title }}
+{% endblock tittle %}
+{% block content %}
+<style>
+.one-article-img {
+    width: 290px;
+    height: 284px;
+    border-radius: 50%;
+    padding: 5px;
+    object-fit: cover;
+    filter: brightness(80%);
+}
+.all-article-in-main-category {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.all-article-in-main-category-item {
+    width: calc(33.33% - 10px);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+.one-article {
+    text-align: center;
+}
+.one-article-image-container {
+    position: relative;
+    display: inline-block;
+}
+.one-article-link {
+    position: absolute;
+    top: 75%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 43px;
+    height: 43px;
+}
+.one-article-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.one-article-title {
+    margin: 0;
+    font-family: "Unbounded";
+    font-weight: 700;
+    font-style: bold;
+    font-size: 18px;
+    color: white;
+}
+.one-article-description {
+    margin: 0;
+    font-family: "Comfortaa";
+    font-weight: 600;
+    font-style: semibold;
+    color: #AEAEAE;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+.page-link {
+    color: white;
+    background-color: #3030A6;
+    border-color: #4C956C;
+}
+.page-item.active .page-link {
+    background-color: #4C956C;
+    border-color: #4C956C;
+    color: white;
+}
+.page-link:hover {
+    background-color: #3030A6;
+    border-color: #4C956C;
+    color: white;
+}
+@media (max-width: 768px) {
+    .one-article-img {
+        width: 310px;
+        height: 300px;
+    }
+    .one-article-link {
+        top: 76%;
+        left: 76%;
+        width: 40px;
+        height: 40px;
+    }
+    .one-article-title {
+        font-size: 22px;
+    }
+    .one-article-description {
+        font-size: 20px;
+    }
+    .all-articles-in-main-category-item {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .col-12 {
+        width: 100%;
+    }
+    .all-articles-in-main-category {
+        display: block;
+    }
+    .all-categories-img-card-container {
+        text-align: center;
+    }
+    .all-categories-with-articles {
+        display: none;
+    }
+}
+</style>
+<div class="col-12">
+    <div class="row all-articles-in-main-category">
+        {% for article in articles %}
+            <div class="col-3 all-articles-in-main-category-item">
+                <div class="one-article">
+                    <div class="one-article-image-container">
+                        <img class="one-article-img" src="{{ article.articles_title_img.url }}">
+                        <a class="one-article-link" href="{% url 'articles:article_detail' article.id %}">
+                            <img src="/static/img/category-link.svg">
+                        </a>
+                    </div>
+                    <div class="one-article-details">
+                        <p class="one-article-title">{{ article.articles_title }}</p>
+                        <p class="one-article-description">{{ article.articles_description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

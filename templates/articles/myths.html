@@ -1,0 +1,139 @@
+
+{% block title %}{% endblock title %}
+{% block content %}
+<style>
+.container-article-detail {
+    margin-top: 15px;
+}
+.artcile-way {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.article-way-title {
+    font-family: "Comfortaa";
+    font-weight: 600;
+    font-style: semibold;
+    font-size: 14px;
+    color: white;
+    margin-right: 5px;
+}
+.article-way-link {
+    width: 23px;
+    text-decoration: none;
+}
+.article-way-link.active {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+.one-article {
+    text-align: center;
+}
+.one-article-image-container {
+    position: relative;
+    display: inline-block;
+}
+.one-article-link {
+    position: absolute;
+    top: 75%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 43px;
+    height: 43px;
+}
+.one-article-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.one-article-title {
+    margin: 0;
+    font-family: "Unbounded";
+    font-weight: 700;
+    font-style: bold;
+    font-size: 18px;
+    color: white;
+}
+.one-article-description {
+    margin: 0;
+    font-family: "Comfortaa";
+    font-weight: 600;
+    font-style: semibold;
+    color: #AEAEAE;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+.one-article-img {
+    width: 290px;
+    height: 284px;
+    border-radius: 50%;
+    padding: 5px;
+    object-fit: cover;
+    filter: brightness(80%);
+}
+@media (max-width: 768px) {
+    .one-article-img {
+        width: 310px;
+        height: 300px;
+    }
+    .one-article-link {
+        top: 76%;
+        left: 76%;
+        width: 40px;
+        height: 40px;
+    }
+    .one-article-title {
+        font-size: 22px;
+    }
+    .one-article-description {
+        font-size: 20px;
+    }
+    .all-articles-in-main-category-item {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .col-9 {
+        width: 100%;
+    }
+    .all-articles-in-main-category {
+        display: block;
+    }
+    .all-categories-img-card-container {
+        text-align: center;
+    }
+    .all-categories-with-articles {
+        display: none;
+    }
+}
+@media (max-width: 1024px) {
+    .all-categories-img-card {
+        width: 700px;
+        height: 300px;
+        border-radius: 30px;
+    }
+}
+</style>
+<div class="col-9">
+    <div class="row all-articles-in-main-category">
+        {% for subcategory in subcategories %}
+            <div class="col-4 all-articles-in-main-category-item">
+                <div class="one-article">
+                    <div class="one-article-image-container">
+                        <img class="one-article-img" src="{{ subcategory.articles_subcategory_img.url }}">
+                        <a class="one-article-link" href="{% url 'articles:all_myths_in_sub' subcategory.id %}">
+                            <img src="/static/img/category-link.svg">
+                        </a>
+                    </div>
+                    <div class="one-article-details">
+                        <p class="one-article-title">{{ subcategory.articles_subcategory_title }}</p>
+                        <p class="one-article-description">{{ subcategory.articles_subcategory_description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

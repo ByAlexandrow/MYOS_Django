@@ -37,6 +37,42 @@ class ArticlesCategories(models.Model):
         return self.articles_category_title
 
 
+class ArticlesSubcategories(models.Model):
+    articles_subcategory_title = models.CharField(
+        max_length=40,
+        verbose_name='Подкатегория',
+    )
+    articles_subcategory_img = models.ImageField(
+        upload_to='image/articles_category/',
+        verbose_name='Титульная картинка подкатегории',
+    )
+    articles_subcategory_description = models.CharField(
+        max_length=100,
+        verbose_name='Описание',
+        default='Описание подкатегории',
+    )
+    category = models.ForeignKey(
+        ArticlesCategories,
+        on_delete=models.CASCADE,
+        verbose_name='Категория',
+        default='2',
+    )
+    created_at = models.DateField(
+        auto_now_add=True,
+        verbose_name='Дата публикации',
+    )
+    is_published = models.BooleanField(
+        verbose_name='Опубликовать',
+    )
+
+    class Meta:
+        verbose_name = 'Подкатегория'
+        verbose_name_plural = 'Подкатегория'
+    
+    def __str__(self):
+        return self.articles_subcategory_title
+
+
 class Articles(models.Model):
     articles_title = models.CharField(
         max_length=30,
@@ -103,6 +139,12 @@ class Articles(models.Model):
         on_delete=models.CASCADE,
         null=True,
         verbose_name='Категория'
+    )
+    subcategory = models.ForeignKey(
+        ArticlesSubcategories,
+        on_delete=models.CASCADE,
+        null=True,
+        verbose_name='Подкатегория',
     )
     author = models.ForeignKey(
         User,

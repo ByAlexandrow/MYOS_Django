@@ -28,37 +28,22 @@ DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'mystery-of-story.com']
 
-SITE_ID = 1
-
 CSRF_TRUSTED_ORIGINS = [
     'https://mystery-of-story.com',
 ]
 
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
-
 # Application definition
 
 INSTALLED_APPS = [
-    'achievements.apps.AchievementsConfig',
-    'accounts.apps.AccountsConfig',
     'cute.apps.CuteConfig',
     'pages.apps.PagesConfig',
     'articles.apps.ArticlesConfig',
     'homepage.apps.HomepageConfig',
     'django.contrib.admin',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.github',
-    'allauth.socialaccount.providers.yandex',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.sites',
     'django.contrib.staticfiles',
     'django_filters',
     'tinymce',
@@ -72,12 +57,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'Mystery_Of_Story.urls'
-
-LOGIN_REDIRECT_URL = '/'
 
 TEMPLATES_DIR = BASE_DIR / 'templates'
 
@@ -92,28 +74,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request',
             ],
         },
     },
 ]
-
-SOCIALACCOUNT_PROVIDERS = {
-    'github': {
-        'APP': {
-            'client_id': 'Ov23li6m0ib32mrSURuH',
-            'secret': '3002fb10dc85208365bcb3e2ea7dd8a760a11f8e',
-            'key': ''
-        }
-    },
-    'yandex': {
-        'APP': {
-            'client_id': '872939fa4f3e4763ad6d69f316ca9f53',
-            'secret': '63f2c48c144f479095dea0975df812be',
-            'key': ''
-        }
-    }
-}
 
 WSGI_APPLICATION = 'Mystery_Of_Story.wsgi.application'
 
@@ -169,7 +133,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -204,5 +168,3 @@ TINYMCE_DEFAULT_CONFIG = {
     'menubar': True,
     'statusbar': True,
 }
-
-CSRF_FAILURE_VIEW = 'pages.views.csrf_failure'

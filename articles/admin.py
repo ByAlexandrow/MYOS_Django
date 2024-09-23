@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from articles.models import (
-    Articles, ArticlesCategories, ArticlesImage
+    Articles, ArticlesCategories, ArticlesImage, ArticlesSubcategories
 )
 
 class ArticlesImageInline(admin.StackedInline):
@@ -28,3 +28,13 @@ class ArticlesCategoriesAdmin(admin.ModelAdmin):
     )
     list_display_links = ('articles_category_title',)
     list_filter = ('articles_category_title',)
+
+
+@admin.register(ArticlesSubcategories)
+class ArticlesSubcategoriesAdmin(admin.ModelAdmin):
+    list_display = (
+        'articles_subcategory_title', 'articles_subcategory_description',
+        'category', 'created_at', 'is_published'
+    )
+    list_display_links = ('articles_subcategory_title',)
+    list_filter = ('articles_subcategory_title',)
