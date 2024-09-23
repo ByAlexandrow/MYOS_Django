@@ -23,7 +23,7 @@ urlpatterns = [
     path('cute/', include('cute.urls', namespace='cute')),
     path('pages/', include('pages.urls', namespace='pages')),
     path('articles/', include('articles.urls', namespace='articles')),
-    path('admin/', admin.site.urls),
+    path('5wjz453ZQXkQst62/', admin.site.urls),
     path('', include('homepage.urls', namespace='homepage')),
 ]
 

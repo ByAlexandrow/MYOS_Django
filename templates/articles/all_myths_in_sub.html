@@ -1,8 +1,40 @@
-{% extends 'base.html' %}
-{% block tittle %}{{ article.subcategory.articles_subcategory_title }}
-{% endblock tittle %}
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Mystery Of Story - {{ subcategory.articles_subcategory_title }}{% endblock title %}
 {% block content %}
 <style>
+.article-way {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.article-way-title {
+    font-family: "Comfortaa";
+    font-weight: 600;
+    font-style: semibold;
+    font-size: 14px;
+    color: white;
+    margin-right: 5px;
+}
+.article-way-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+.article-way-link.active {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+.arrow {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.subcategory-title {
+    display: none;
+}
 .one-article-img {
     width: 290px;
     height: 284px;
@@ -76,6 +108,14 @@
     color: white;
 }
 @media (max-width: 768px) {
+    .subcategory-title {
+        color: white;
+        font-family: "Unbounded";
+        font-weight: 700;
+        font-style: bold;
+        font-size: 40px;
+        text-align: center;
+    }
     .one-article-img {
         width: 310px;
         height: 300px;
@@ -112,6 +152,28 @@
 </style>
 <div class="col-12">
     <div class="row all-articles-in-main-category">
+        <div class="article-way justify-content-center">
+            <div class="to-the-main-page">
+                <a class="article-way-link" href="{% url 'homepage:index' %}">
+                    <p class="article-way-title">Главная
+                        <img class="arrow" src="/static/img/arrow.svg">
+                    </p>
+                </a>
+            </div>
+            <div class="to-the-category-page">
+                <a class="article-way-link" href="{% url 'articles:all_categories' subcategory.category.id %}">
+                    <p class="article-way-title">Категории
+                        <img class="arrow" src="/static/img/arrow.svg">
+                    </p>
+                </a>
+            </div>
+            <div class="to-the-main-category-page">
+                <a class="article-way-link" href="{% url 'articles:all_myths_in_sub' subcategory.id %}">
+                    <p class="article-way-title">{{ subcategory.articles_subcategory_title }}</p>
+                </a>
+            </div>
+        </div>
+        <p class="subcategory-title">{{ subcategory.articles_subcategory_title }}</p>
         {% for article in articles %}
             <div class="col-3 all-articles-in-main-category-item">
                 <div class="one-article">
