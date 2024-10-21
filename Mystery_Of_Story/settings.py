@@ -35,7 +35,6 @@ CSRF_TRUSTED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'cute.apps.CuteConfig',
     'pages.apps.PagesConfig',
     'articles.apps.ArticlesConfig',
     'homepage.apps.HomepageConfig',
