@@ -470,7 +470,7 @@
                     <div class="category-title">
                         <a class="main-page-nav-link" href="{% url 'articles:all_categories' category.id %}">
                             <p class="title">{{ category.articles_category_title }}</p>
-                            <img src="/static/img/vector.svg" class="category-vector">
+                            <img src="{% static 'img/vector.svg' %}" class="category-vector">
                         </a>
                     </div>
                 </div>
