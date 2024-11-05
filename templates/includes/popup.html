@@ -1,0 +1,148 @@
+<style>
+.modal-content {
+    background-color: #3030A6;
+    border: 2px solid #4C956C;
+    color: white;
+    text-align: center;
+    font-family: "Bad Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+.modal-header {
+    color: white;
+    font-family: "Unbounded";
+    font-weight: 500;
+    font-style: medium;
+    border-bottom: 1px solid #4C956C;
+}
+.modal-body .d-flex {
+    display: flex;
+    justify-content: center;
+}
+.tg {
+    background-color: #3030A6;
+    border-radius: 22px;
+    border-color: #4C956C;
+    width: 248px;
+    height: 37px;
+    color: white;
+}
+.tg:hover {
+    background-color: #3030A6;
+    border-radius: 22px;
+    border-color: white;
+    width: 248px;
+    height: 37px;
+    color: white;
+}
+.tg-github-vk {
+    background-color: #3030A6;
+    color: white;
+    border-radius: none;
+    border-color: none;
+}
+.tg-github-vk:hover {
+    background-color: #3030A6;
+    color: white;
+    border-radius: none;
+    border-color: none;
+}
+.social-link {
+    transition: transform 0.2s ease-in-out;
+}
+.social-link:hover {
+    transform: scale(1.1);
+}
+.modal-footer {
+    border-top: 1px solid #4C956C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.modal-footer p {
+    margin-bottom: 10px;
+}
+.footer-links {
+    display: flex;
+    gap: 10px;
+}
+.footer-links .btn {
+    flex: 1;
+}
+.work-together {
+    text-align: center;
+    font-size: 21px;
+}
+.custom-close {
+    color: #4C956C;
+    background: url('/static/img/close-40.png') no-repeat center center;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    border: none;
+    transition: transform 0.2s ease-in-out;
+}
+.custom-close:hover {
+    transform: scale(1.1);
+}
+@media (max-width: 768px) {
+    .modal-footer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-links .btn {
+        width: 100%;
+    }
+    .modal-image {
+        max-width: 100%;
+        height: auto;
+    }
+}
+</style>
+<div class="modal fade" id="donationModal" tabindex="-1" aria-labelledby="donationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="donationModalLabel">Поддержать проект</h5>
+                <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Поддержите проект - подпишитесь на меня)):</p>
+                <img src="/static/img/little_myos.png" alt="Little Myos" class="mb-3 modal-image">
+                <div class="d-flex">
+                    <a href="https://t.me/By_Alexandrow/" target="_blank" class="social-link">
+                        <button type="button" class="btn tg-github-vk">
+                            <img src="/static/img/tg-40.png" alt="Telegram">
+                        </button>
+                    </a>
+                    <a href="https://github.com/ByAlexandrow/" target="_blank" class="social-link">
+                        <button class="btn tg-github-vk">
+                            <img src="/static/img/github-40.png" alt="GitHub">
+                        </button>
+                    </a>
+                    <a href="https://t.me/By_Alexandrow/" target="_blank" class="social-link">
+                        <button type="button" class="btn tg-github-vk">
+                            <img src="/static/img/vk-40.png" alt="VK">
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p class="work-together">По вопросам сотрудничества:</p>
+                <div class="footer-links">
+                    <a href="https://lipetsk.hh.ru/resume/7bc32cb9ff0d4510b90039ed1f427845737944" target="_blank">
+                        <button type="button" class="btn tg-github-vk">Мое резюме на hh.ru</button>
+                    </a>
+                    <a href="https://t.me/AlexandrowE/" target="_blank">
+                        <button class="btn tg">Связаться со мной</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
