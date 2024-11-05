@@ -8,9 +8,8 @@
 1. Python
 2. Django
 3. JavaScript, HTML, CSS3
-4. TinyMCE, Boosty
+4. TinyMCE
 5. Pytest
-6. Docker, CI/CD, GitHubActions
 
 ### Контакты создателей
 
