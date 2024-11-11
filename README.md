@@ -17,7 +17,7 @@
 
 Код написан программистом: https://github.com/ByAlexandrow/
 
-Идея принадлежит программисту: https://t.me/AlexandrowE
+Идея принадлежит: https://t.me/AlexandrowE
 
 ### Ссылка на сайт
 
