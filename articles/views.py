@@ -26,7 +26,17 @@ def all_categories(request, id):
 
 
 def new_articles(request):
-    news = Articles.objects.filter(is_published=True).order_by('-created_at')[:9]
+    all_articles = Articles.objects.filter(is_published=True).order_by('-created_at')
+    filtered_articles = []
+    for article in all_articles:
+        if article.category and not article.category.is_published:
+            continue
+        if article.subcategory and not article.subcategory.is_published:
+            continue
+        filtered_articles.append(article)
+    
+    # Ограничиваем количество отображаемых статей до 9
+    news = filtered_articles[:9]
     return render(request, 'articles/new_articles.html', {'news': news})
 
 
@@ -36,7 +46,8 @@ def article_detail(request, id):
 
 
 def myths(request):
-    subcategories = ArticlesSubcategories.objects.filter(category__id=2, is_published=True)
+    category = get_object_or_404(ArticlesCategories, pk=2)
+    subcategories = ArticlesSubcategories.objects.filter(category=category, is_published=True)
     return render(request, 'articles/myths.html', {'subcategories': subcategories})
 
 
