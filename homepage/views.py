@@ -1,9 +1,13 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from articles.models import Articles, ArticlesCategories
 
 
 def index(request):
+    if not request.COOKIES.get('open_site'):
+        response = HttpResponse("Открытие сайта!")
+        response.set_cookie('open_site', 'true', max_age=3600)
     categories = ArticlesCategories.objects.filter(is_published=True)
     new_articles = Articles.objects.filter(is_published=True).order_by('-created_at')
     filtered_articles = []

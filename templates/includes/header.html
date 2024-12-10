@@ -178,7 +178,7 @@ header {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="head-nav navbar-nav mx-auto">
                     <li class="header-nav-item">
-                        <a class="nav-link" href="{% url 'homepage:index' %}#about-project">
+                        <a href="{% url 'homepage:index' %}#about-project" id="about-project-link" class="nav-link">
                             О проекте
                         </a>
                     </li>
@@ -203,13 +203,13 @@ header {
 </header>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var aboutProjectLink = document.querySelector('a[href="{% url 'homepage:index' %}#about-project"]');
+        var aboutProjectLink = document.getElementById('about-project-link');
         if (aboutProjectLink) {
             aboutProjectLink.addEventListener('click', function(event) {
                 event.preventDefault();
                 var targetUrl = this.href;
                 var targetId = targetUrl.split('#')[1];
-    
+
                 if (window.location.pathname !== "{% url 'homepage:index' %}") {
                     window.location.href = targetUrl;
                 } else {
